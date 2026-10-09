@@ -1,0 +1,2536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Anti-AI Qwen Academy | History EGE-2026</title>
+  <meta
+    name="description"
+    content="Free offline trainer and checklist for EGE History 2026: exam structure, 12 Part 1 tasks, 9 Part 2 tasks, criteria, preparation plan."
+  />
+
+  <link rel="icon" href="favicon.ico" type="image/x-icon" />
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+
+  <style>
+    * { box-sizing: border-box; }
+
+    :root {
+      --bg: #070b18;
+      --card: rgba(18, 26, 51, 0.72);
+      --card-soft: rgba(255, 255, 255, 0.05);
+      --border: rgba(255, 255, 255, 0.1);
+      --text: #e8ecff;
+      --muted: #9aa4c8;
+      --accent: #22d3ee;
+      --violet: #7c3aed;
+      --green: #22c55e;
+      --red: #ef4444;
+      --orange: #f59e0b;
+    }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(124, 58, 237, 0.22), transparent 30%),
+        radial-gradient(circle at top right, rgba(34, 211, 238, 0.18), transparent 28%),
+        var(--bg);
+      color: var(--text);
+      line-height: 1.55;
+      min-height: 100vh;
+    }
+
+    .container { width: min(1120px, 92%); margin: 0 auto; }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(14px);
+      background: rgba(7, 11, 24, 0.82);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 14px 0;
+      flex-wrap: wrap;
+    }
+
+    .brand { display: flex; align-items: center; gap: 12px; }
+
+    .brand-logo {
+      width: 46px;
+      height: 46px;
+      border-radius: 15px;
+      object-fit: cover;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      box-shadow: 0 12px 30px rgba(34, 211, 238, 0.18);
+      flex: 0 0 auto;
+    }
+
+    .brand strong { display: block; font-size: 16px; line-height: 1.2; }
+    .brand small { color: var(--muted); font-size: 12px; }
+
+    nav { display: flex; gap: 18px; flex-wrap: wrap; }
+
+    nav a {
+      color: #cfd6ff;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 14px;
+    }
+
+    nav a:hover { color: white; }
+
+    /* New Controls Area */
+    .top-controls {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-left: auto;
+    }
+
+    .lang-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--muted);
+      border-radius: 999px;
+      padding: 8px 12px;
+      font-weight: 850;
+      cursor: pointer;
+      transition: 0.15s ease;
+    }
+
+    .lang-btn:hover { background: rgba(255, 255, 255, 0.12); }
+
+    .lang-option { opacity: 0.65; }
+    .lang-option.active { opacity: 1; color: white; }
+    .lang-sep { opacity: 0.45; }
+
+    .timer-widget {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 14px;
+      padding: 6px 8px;
+    }
+
+    .timer-widget select {
+      background: rgba(7, 11, 24, 0.55);
+      color: var(--text);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 10px;
+      padding: 6px 8px;
+      font: inherit;
+      font-size: 12px;
+      max-width: 160px;
+    }
+
+    #timerDisplay {
+      font-variant-numeric: tabular-nums;
+      font-weight: 900;
+      min-width: 88px;
+      text-align: center;
+      color: white;
+    }
+
+    .timer-btn {
+      border: 0;
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--text);
+      border-radius: 10px;
+      padding: 6px 9px;
+      cursor: pointer;
+      font-size: 14px;
+      transition: 0.15s ease;
+    }
+
+    .timer-btn:hover { background: rgba(255, 255, 255, 0.14); }
+
+    .timer-widget.warning #timerDisplay { color: var(--orange); }
+    .timer-widget.danger #timerDisplay {
+      color: var(--red);
+      animation: pulse 1s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.55; }
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 24px;
+      padding: 48px 0 28px;
+      align-items: start;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(124, 58, 237, 0.18);
+      border: 1px solid rgba(124, 58, 237, 0.35);
+      color: #d8ccff;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    h1 { font-size: clamp(34px, 5vw, 58px); line-height: 1.05; margin: 16px 0; }
+    h1 .accent { color: var(--accent); }
+
+    .lead { color: #b8c1e6; max-width: 72ch; font-size: 17px; }
+
+    .actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 22px; }
+
+    .btn {
+      border: 0;
+      border-radius: 14px;
+      padding: 14px 18px;
+      font-weight: 850;
+      cursor: pointer;
+      transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+      background: linear-gradient(135deg, var(--violet), var(--accent));
+      color: white;
+      box-shadow: 0 12px 30px rgba(34, 211, 238, 0.18);
+      font-size: 15px;
+    }
+
+    .btn:hover { transform: translateY(-1px); }
+
+    .btn.secondary {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      color: #eaf0ff;
+      box-shadow: none;
+    }
+
+    .btn.small { padding: 10px 14px; font-size: 14px; border-radius: 12px; }
+
+    .panel {
+      background: linear-gradient(180deg, rgba(124, 58, 237, 0.16), rgba(6, 182, 212, 0.10));
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 24px;
+      padding: 22px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+    }
+
+    .panel h3 { margin: 0 0 14px; font-size: 20px; }
+
+    .metrics { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 18px 0; }
+
+    .metric {
+      background: rgba(7, 11, 24, 0.35);
+      border-radius: 16px;
+      padding: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      min-height: 82px;
+    }
+
+    .metric strong { display: block; font-size: 22px; color: white; margin-bottom: 4px; }
+    .metric span { color: var(--muted); font-size: 12px; }
+
+    progress {
+      width: 100%;
+      height: 10px;
+      border-radius: 999px;
+      overflow: hidden;
+      appearance: none;
+      background: rgba(255, 255, 255, 0.1);
+      border: none;
+      margin-top: 10px;
+    }
+
+    progress::-webkit-progress-bar { background: rgba(255, 255, 255, 0.1); border-radius: 999px; }
+    progress::-webkit-progress-value { background: linear-gradient(90deg, var(--violet), var(--accent)); border-radius: 999px; }
+    progress::-moz-progress-bar { background: var(--accent); border-radius: 999px; }
+
+    .note { color: var(--muted); font-size: 13px; margin-top: 12px; }
+
+    section { padding: 28px 0; }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 16px;
+      margin-bottom: 18px;
+      flex-wrap: wrap;
+    }
+
+    h2 { font-size: clamp(26px, 3vw, 36px); margin: 0; line-height: 1.15; }
+    .sub { color: var(--muted); margin: 6px 0 0; }
+
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(245px, 1fr)); gap: 16px; }
+
+    .card {
+      background: var(--card);
+      border: 1px solid rgba(255, 255, 255, 0.09);
+      border-radius: 22px;
+      padding: 20px;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.18);
+    }
+
+    .card h3 { margin: 0 0 10px; font-size: 20px; }
+    .card p { color: #b8c1e6; margin: 0 0 16px; }
+
+    .warn-card {
+      border-color: rgba(245, 158, 11, 0.35);
+      background: linear-gradient(180deg, rgba(245, 158, 11, 0.10), rgba(18, 26, 51, 0.72));
+    }
+
+    .danger-card {
+      border-color: rgba(239, 68, 68, 0.35);
+      background: linear-gradient(180deg, rgba(239, 68, 68, 0.10), rgba(18, 26, 51, 0.72));
+    }
+
+    .success-card {
+      border-color: rgba(34, 197, 94, 0.35);
+      background: linear-gradient(180deg, rgba(34, 197, 94, 0.10), rgba(18, 26, 51, 0.72));
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 850;
+      margin-bottom: 10px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: #dbe3ff;
+    }
+
+    .tag.red { background: rgba(239, 68, 68, 0.14); border-color: rgba(239, 68, 68, 0.35); color: #ffd7d7; }
+    .tag.green { background: rgba(34, 197, 94, 0.14); border-color: rgba(34, 197, 94, 0.35); color: #d7ffe6; }
+    .tag.orange { background: rgba(245, 158, 11, 0.14); border-color: rgba(245, 158, 11, 0.35); color: #fff0cc; }
+
+    .mini-list { margin: 0; padding-left: 18px; color: #c8d2f5; }
+    .mini-list li { margin: 7px 0; }
+
+    .filter-bar {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+      padding: 14px;
+      background: var(--card-soft);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      align-items: center;
+    }
+
+    .filter-bar span {
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 700;
+      margin-right: 6px;
+    }
+
+    .filter-btn {
+      padding: 8px 14px;
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      background: rgba(255, 255, 255, 0.06);
+      color: var(--text);
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 700;
+      transition: 0.15s ease;
+    }
+
+    .filter-btn:hover { background: rgba(255, 255, 255, 0.1); }
+    .filter-btn.active {
+      background: linear-gradient(135deg, var(--violet), var(--accent));
+      border-color: transparent;
+      color: white;
+    }
+
+    .question-block {
+      background: var(--card);
+      border: 1px solid rgba(255, 255, 255, 0.09);
+      border-radius: 24px;
+      padding: 24px;
+      margin-bottom: 26px;
+      box-shadow: 0 18px 50px rgba(0, 0, 0, 0.22);
+    }
+
+    .q-number {
+      display: inline-block;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: rgba(124, 58, 237, 0.22);
+      border: 1px solid rgba(124, 58, 237, 0.45);
+      color: #d8ccff;
+      font-size: 13px;
+      font-weight: 850;
+      margin-bottom: 14px;
+    }
+
+    .q-number.ancient {
+      background: rgba(34, 197, 94, 0.18);
+      border-color: rgba(34, 197, 94, 0.45);
+      color: #d7ffe6;
+    }
+
+    .q-number.empire {
+      background: rgba(245, 158, 11, 0.18);
+      border-color: rgba(245, 158, 11, 0.45);
+      color: #fff0cc;
+    }
+
+    .q-number.soviet {
+      background: rgba(239, 68, 68, 0.18);
+      border-color: rgba(239, 68, 68, 0.45);
+      color: #ffd7d7;
+    }
+
+    .q-part { margin-bottom: 18px; }
+
+    .q-part-label {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+
+    .q-text {
+      font-size: 17px;
+      font-weight: 700;
+      margin: 0;
+      line-height: 1.5;
+      color: #eaf0ff;
+      white-space: pre-wrap;
+    }
+
+    .q-image-note {
+      margin: 10px 0 14px;
+      padding: 10px 14px;
+      border-radius: 12px;
+      background: rgba(245, 158, 11, 0.10);
+      border: 1px dashed rgba(245, 158, 11, 0.45);
+      color: #fff0cc;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .q-source-note {
+      margin: 10px 0 14px;
+      padding: 10px 14px;
+      border-radius: 12px;
+      background: rgba(124, 58, 237, 0.12);
+      border: 1px dashed rgba(124, 58, 237, 0.5);
+      color: #d8ccff;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .q-format-note {
+      margin: 12px 0 14px;
+      padding: 12px 14px;
+      border-radius: 12px;
+      background: rgba(34, 211, 238, 0.10);
+      border: 1px solid rgba(34, 211, 238, 0.4);
+      color: #cdeeff;
+      font-size: 14px;
+      line-height: 1.5;
+      white-space: pre-wrap;
+    }
+
+    .q-format-note strong { color: #ffffff; }
+
+    .q-info {
+      background: rgba(124, 58, 237, 0.10);
+      border-left: 4px solid var(--violet);
+      border-radius: 0 14px 14px 0;
+      padding: 16px 18px;
+      margin: 18px 0;
+      color: #dbe3ff;
+      font-size: 15px;
+      line-height: 1.55;
+      white-space: pre-wrap;
+    }
+
+    .q-info strong { color: #ffffff; }
+
+    .q-trainer-label {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--green);
+      margin-bottom: 10px;
+    }
+
+    .options { display: grid; gap: 10px; }
+
+    .option {
+      text-align: left;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: var(--text);
+      border-radius: 14px;
+      padding: 14px 16px;
+      cursor: pointer;
+      font-size: 15px;
+      transition: 0.15s ease;
+      white-space: pre-wrap;
+    }
+
+    .option:hover:not(:disabled) { background: rgba(255, 255, 255, 0.1); }
+    .option.correct { background: rgba(34, 197, 94, 0.18); border-color: rgba(34, 197, 94, 0.55); }
+    .option.wrong { background: rgba(239, 68, 68, 0.18); border-color: rgba(239, 68, 68, 0.55); }
+    .option:disabled { cursor: default; }
+
+    .result-block {
+      margin-top: 14px;
+      padding: 14px 16px;
+      border-radius: 14px;
+    }
+
+    .result-block.correct {
+      background: rgba(34, 197, 94, 0.12);
+      border: 1px solid rgba(34, 197, 94, 0.35);
+    }
+
+    .result-block.wrong {
+      background: rgba(239, 68, 68, 0.12);
+      border: 1px solid rgba(239, 68, 68, 0.35);
+    }
+
+    .verdict {
+      font-size: 17px;
+      font-weight: 900;
+      margin-bottom: 8px;
+    }
+
+    .verdict.correct { color: #22c55e; }
+    .verdict.wrong { color: #ef4444; }
+
+    .result-row {
+      margin: 6px 0;
+      color: #d7e6ff;
+      font-size: 15px;
+    }
+
+    .result-row strong { color: #ffffff; }
+
+    .source-row {
+      margin-top: 10px;
+      padding-top: 10px;
+      border-top: 1px dashed rgba(255, 255, 255, 0.18);
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .source-row strong { color: #dbe3ff; }
+
+    .summary {
+      background: linear-gradient(180deg, rgba(34, 197, 94, 0.14), rgba(18, 26, 51, 0.72));
+      border: 1px solid rgba(34, 197, 94, 0.4);
+      border-radius: 24px;
+      padding: 24px;
+      text-align: center;
+      margin-top: 24px;
+    }
+
+    .summary .score { font-size: 48px; font-weight: 950; color: #fff; }
+
+    .reset-bar {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+      justify-content: flex-end;
+    }
+
+    .checklist { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; }
+
+    .check-item {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      background: var(--card-soft);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 14px;
+      transition: 0.15s ease;
+    }
+
+    .check-item input {
+      width: 20px;
+      height: 20px;
+      margin-top: 3px;
+      accent-color: var(--accent);
+      flex: 0 0 auto;
+    }
+
+    .check-item label { cursor: pointer; color: #dbe3ff; }
+
+    .check-item.done {
+      opacity: 0.72;
+      background: rgba(34, 211, 238, 0.08);
+      border-color: rgba(34, 211, 238, 0.25);
+    }
+
+    .check-item.done label { text-decoration: line-through; color: #aab5dc; }
+
+    .plan-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; }
+
+    .day {
+      background: var(--card-soft);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 16px;
+      min-height: 112px;
+    }
+
+    .day b {
+      display: block;
+      color: var(--accent);
+      margin-bottom: 6px;
+      font-size: 14px;
+      letter-spacing: 0.2px;
+    }
+
+    .day.critical {
+      border-color: rgba(239, 68, 68, 0.35);
+      background: rgba(239, 68, 68, 0.08);
+    }
+
+    .manual-card {
+      background: var(--card);
+      border: 1px solid rgba(255, 255, 255, 0.09);
+      border-radius: 22px;
+      padding: 20px;
+      margin-bottom: 16px;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.18);
+    }
+
+    .manual-card h3 { margin: 0 0 10px; font-size: 20px; }
+    .manual-card p { color: #b8c1e6; margin: 8px 0; white-space: pre-wrap; }
+
+    .answer-hint {
+      margin-top: 12px;
+      padding: 14px 16px;
+      border-radius: 14px;
+      background: rgba(34, 197, 94, 0.10);
+      border: 1px solid rgba(34, 197, 94, 0.28);
+      color: #d7ffe6;
+      font-size: 15px;
+      line-height: 1.55;
+      white-space: pre-wrap;
+    }
+
+    .answer-hint strong { color: #ffffff; }
+
+    .check-input {
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px dashed rgba(255, 255, 255, 0.18);
+    }
+
+    .check-input label {
+      display: block;
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 8px;
+      font-weight: 700;
+    }
+
+    .check-input input {
+      width: 100%;
+      padding: 12px 14px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      background: rgba(255, 255, 255, 0.06);
+      color: var(--text);
+      font-size: 15px;
+      font-family: inherit;
+    }
+
+    .check-input input:focus {
+      outline: none;
+      border-color: var(--accent);
+      background: rgba(34, 211, 238, 0.06);
+    }
+
+    .support-card {
+      background: linear-gradient(180deg, rgba(124, 58, 237, 0.18), rgba(34, 211, 238, 0.10));
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 24px;
+      padding: 24px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+    }
+
+    .support-card h2 { margin-bottom: 10px; }
+    .support-card p { margin: 10px 0; color: #dbe3ff; }
+
+    .phone {
+      color: white;
+      font-weight: 900;
+      text-decoration: none;
+      border-bottom: 1px dashed rgba(255, 255, 255, 0.45);
+    }
+
+    .phone:hover { color: var(--accent); }
+
+    .copy-status { margin-left: 8px; color: var(--green); font-weight: 850; }
+
+    .support-card a { color: var(--accent); font-weight: 800; text-decoration: none; }
+    .support-card a:hover { text-decoration: underline; }
+
+    footer {
+      padding: 30px 0 50px;
+      color: var(--muted);
+      text-align: center;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      margin-top: 30px;
+    }
+
+    @media (max-width: 860px) {
+      .hero { grid-template-columns: 1fr; }
+      .metrics { grid-template-columns: 1fr; }
+      nav { gap: 12px; }
+      .top-controls { width: 100%; justify-content: space-between; }
+      .timer-widget select { max-width: 120px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container topbar">
+      <div class="brand">
+        <img
+          src="favicon.ico"
+          class="brand-logo"
+          alt="Anti-AI Qwen Academy Logo"
+          onerror="this.style.display='none'"
+        />
+        <div>
+          <strong data-i18n="brandTitle">Anti-AI Qwen Academy</strong>
+          <small data-i18n="brandSub">Free EGE-2026 Projects</small>
+        </div>
+      </div>
+
+      <nav>
+        <a href="#structure" data-i18n="navStructure">Structure</a>
+        <a href="#changes" data-i18n="navChanges">Important 2026</a>
+        <a href="#criteria" data-i18n="navCriteria">Criteria</a>
+        <a href="#trainer" data-i18n="navTrainer">Trainer</a>
+        <a href="#part2" data-i18n="navPart2">Part 2</a>
+        <a href="#checklist" data-i18n="navChecklist">Checklist</a>
+        <a href="#plan" data-i18n="navPlan">25 Days</a>
+        <a href="#support" data-i18n="navSupport">Support</a>
+      </nav>
+
+      <div class="top-controls">
+        <button id="langToggle" class="lang-btn" type="button" aria-label="Switch Language">
+          <span class="lang-option" data-lang="ru">RU</span>
+          <span class="lang-sep">/</span>
+          <span class="lang-option active" data-lang="en">EN</span>
+        </button>
+
+        <div class="timer-widget" id="timerWidget" role="group" aria-label="Exam Timer">
+          <select id="timerPreset" aria-label="Timer Preset"></select>
+          <span id="timerDisplay">03:30:00</span>
+          <button id="timerToggle" class="timer-btn" type="button">▶</button>
+          <button id="timerReset" class="timer-btn" type="button">↺</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div>
+        <span class="badge" data-i18n="badge">Free • HTML • History EGE-2026 • 21 Tasks</span>
+
+        <h1 data-i18n="h1">Help you pass <span class="accent">History EGE</span> correctly</h1>
+
+        <p class="lead" data-i18n="lead">
+          For each task: first the question, then information about what the task checks, then the trainer.
+          Answer options are shuffled so you cannot guess “always the first one”. The correct answer appears
+          only after your answer.
+        </p>
+
+        <div class="actions">
+          <button class="btn" onclick="scrollToId('trainer')" data-i18n="actionTrainer">Take the trainer</button>
+          <button class="btn secondary" onclick="scrollToId('part2')" data-i18n="actionPart2">Part 2</button>
+          <button class="btn secondary" onclick="scrollToId('structure')" data-i18n="actionStructure">Exam Structure</button>
+        </div>
+      </div>
+
+      <aside class="panel">
+        <h3 data-i18n="quickStats">Quick Stats</h3>
+
+        <div class="metrics">
+          <div class="metric">
+            <strong id="answeredCount">0/12</strong>
+            <span data-i18n="metricAnswered">auto-questions completed</span>
+          </div>
+          <div class="metric">
+            <strong id="correctCount">0</strong>
+            <span data-i18n="metricCorrect">correct answers</span>
+          </div>
+          <div class="metric">
+            <strong id="checklistProgress">0%</strong>
+            <span data-i18n="metricChecklist">checklist</span>
+          </div>
+        </div>
+
+        <progress id="overall" value="0" max="100"></progress>
+        <p class="note" data-i18n="noteReset">Answers and checklist reset each time the page is opened.</p>
+      </aside>
+    </section>
+
+    <section id="structure">
+      <div class="section-head">
+        <div>
+          <h2 data-i18n="structureTitle">History EGE Structure</h2>
+          <p class="sub" data-i18n="structureSub">Total 21 tasks: 12 short-answer and 9 extended-response.</p>
+        </div>
+      </div>
+
+      <div class="grid" id="structureGrid"></div>
+    </section>
+
+    <section id="changes">
+      <div class="section-head">
+        <div>
+          <h2 data-i18n="changesTitle">What Matters for EGE-2026</h2>
+          <p class="sub" data-i18n="changesSub">Keep these points in mind while preparing.</p>
+        </div>
+      </div>
+
+      <div class="grid" id="changesGrid"></div>
+    </section>
+
+    <section id="criteria">
+      <div class="section-head">
+        <div>
+          <h2 data-i18n="criteriaTitle">Criteria and Rules</h2>
+          <p class="sub" data-i18n="criteriaSub">What you need to know when completing tasks.</p>
+        </div>
+      </div>
+
+      <div class="grid" id="criteriaGrid"></div>
+    </section>
+
+    <section id="trainer">
+      <div class="section-head">
+        <div>
+          <h2 data-i18n="trainerTitle">Trainer: Part 1</h2>
+          <p class="sub" data-i18n="trainerSub">
+            For each task: <strong>1) question</strong> →
+            <strong>2) information</strong> about what the task checks →
+            <strong>3) trainer</strong>, where you answer yourself.
+            Answer options are shuffled randomly — the correct answer is not always first.
+          </p>
+        </div>
+      </div>
+
+      <div class="filter-bar">
+        <span data-i18n="filterShow">Show:</span>
+        <button class="filter-btn active" data-filter="all" id="filterAll" onclick="setFilter('all', this)"></button>
+        <button class="filter-btn" data-filter="ancient" id="filterAncient" onclick="setFilter('ancient', this)"></button>
+        <button class="filter-btn" data-filter="empire" id="filterEmpire" onclick="setFilter('empire', this)"></button>
+        <button class="filter-btn" data-filter="soviet" id="filterSoviet" onclick="setFilter('soviet', this)"></button>
+      </div>
+
+      <div class="reset-bar">
+        <button class="btn secondary small" onclick="resetAll()" data-i18n="resetAll">Reset all answers</button>
+      </div>
+
+      <div id="quizContainer"></div>
+      <div id="summaryBox"></div>
+    </section>
+
+    <section id="part2">
+      <div class="section-head">
+        <div>
+          <h2 data-i18n="part2Title">Part 2: Tasks 13–21</h2>
+          <p class="sub" data-i18n="part2Sub">
+            These tasks require a full justified solution. Automatic checking of only the final answer is incorrect here:
+            manual checking by criteria is needed. Below are task statements, source/image context (as in CMM), mandatory
+            formatting requirements and hidden reference answers: answer yourself first, then click
+            “Show Reference”.
+          </p>
+        </div>
+      </div>
+
+      <div id="part2Container"></div>
+    </section>
+
+    <section id="checklist">
+      <div class="section-head">
+        <div>
+          <h2 data-i18n="checklistTitle">EGE-2026 Preparation Checklist</h2>
+          <p class="sub" data-i18n="checklistSub">Tick completed items — the checklist resets on a new page opening.</p>
+        </div>
+      </div>
+
+      <ul class="checklist" id="checklistUl"></ul>
+    </section>
+
+    <section id="plan">
+      <div class="section-head">
+        <div>
+          <h2 data-i18n="planTitle">Full 25-Day Course for Grade 11</h2>
+          <p class="sub" data-i18n="planSub">Preparation route according to the EGE-2026 structure.</p>
+        </div>
+      </div>
+
+      <div class="plan-grid" id="planGrid"></div>
+    </section>
+
+    <section id="support">
+      <div class="support-card">
+        <h2 data-i18n="supportTitle">🤝 SUPPORT THE PROJECT 💙</h2>
+        <p data-i18n="supportP1"><strong>The app is free. It was and will remain free.</strong></p>
+        <p data-i18n="supportP2">All apps are free and ad-free. Your help supports offline security and education.</p>
+        <p>
+          <span data-i18n="supportPhoneLabel">📱 TRANSFER BY PHONE NUMBER:</span>
+          <a class="phone" href="tel:89202275676">8-920-227-56-76</a>
+          <button class="btn small" onclick="copyPhone()" data-i18n="copyPhone">📋 Copy number</button>
+          <span id="copyStatus" class="copy-status" aria-live="polite"></span>
+        </p>
+        <p data-i18n="supportP3">✅ Money arrives instantly. No commission. Safe.</p>
+        <p data-i18n="supportP4">❤️ Thanks for your support!</p>
+        <p>🌟 👉 <a href="https://ancf-hue.github.io/" target="_blank" rel="noopener noreferrer" data-i18n="supportCatalog">Catalog of free offline Anti-AI Shield apps</a>.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container" data-i18n="footer">
+      Anti-AI Qwen Academy • Free HTML Project • History EGE-2026 • 21 Tasks
+    </div>
+  </footer>
+
+  <script>
+    const STORAGE = {
+      answers: "antiIiKvenHist2026v1Answers",
+      checklist: "antiIiKvenHist2026v1Checklist",
+      shuffle: "antiIiKvenHist2026v1Shuffle",
+      manual: "antiIiKvenHist2026v1Manual"
+    };
+
+    // ============================================================
+    // TRANSLATIONS DICTIONARY
+    // ============================================================
+    const I18N = {
+      en: {
+        docTitle: `Anti-AI Qwen Academy | History EGE-2026`,
+        metaDesc: `Free offline trainer and checklist for EGE History 2026: exam structure, 12 Part 1 tasks, 9 Part 2 tasks, criteria, preparation plan.`,
+        brandTitle: `Anti-AI Qwen Academy`,
+        brandSub: `Free EGE-2026 Projects`,
+        navStructure: `Structure`,
+        navChanges: `Important 2026`,
+        navCriteria: `Criteria`,
+        navTrainer: `Trainer`,
+        navPart2: `Part 2`,
+        navChecklist: `Checklist`,
+        navPlan: `25 Days`,
+        navSupport: `Support`,
+        badge: `Free • HTML • History EGE-2026 • 21 Tasks`,
+        h1: `Help you pass <span class="accent">History EGE</span> correctly`,
+        lead: `For each task: first the question, then information about what the task checks, then the trainer. Answer options are shuffled so you cannot guess “always the first one”. The correct answer appears only after your answer.`,
+        actionTrainer: `Take the trainer`,
+        actionPart2: `Part 2`,
+        actionStructure: `Exam Structure`,
+        quickStats: `Quick Stats`,
+        metricAnswered: `auto-questions completed`,
+        metricCorrect: `correct answers`,
+        metricChecklist: `checklist`,
+        noteReset: `Answers and checklist reset each time the page is opened.`,
+        structureTitle: `History EGE Structure`,
+        structureSub: `Total 21 tasks: 12 short-answer and 9 extended-response.`,
+        changesTitle: `What Matters for EGE-2026`,
+        changesSub: `Keep these points in mind while preparing.`,
+        criteriaTitle: `Criteria and Rules`,
+        criteriaSub: `What you need to know when completing tasks.`,
+        trainerTitle: `Trainer: Part 1`,
+        trainerSub: `For each task: <strong>1) question</strong> → <strong>2) information</strong> about what the task checks → <strong>3) trainer</strong>, where you answer yourself. Answer options are shuffled randomly — the correct answer is not always first.`,
+        filterShow: `Show:`,
+        filterAll: `All`,
+        filterAncient: `Ancient Rus`,
+        filterEmpire: `Russian Empire`,
+        filterSoviet: `USSR`,
+        resetAll: `Reset all answers`,
+        part2Title: `Part 2: Tasks 13–21`,
+        part2Sub: `These tasks require a full justified solution. Automatic checking of only the final answer is incorrect here: manual checking by criteria is needed. Below are task statements, source/image context (as in CMM), mandatory formatting requirements and hidden reference answers: answer yourself first, then click “Show Reference”.`,
+        checklistTitle: `EGE-2026 Preparation Checklist`,
+        checklistSub: `Tick completed items — the checklist resets on a new page opening.`,
+        planTitle: `Full 25-Day Course for Grade 11`,
+        planSub: `Preparation route according to the EGE-2026 structure.`,
+        dayPrefix: `Day`,
+        supportTitle: `🤝 SUPPORT THE PROJECT 💙`,
+        supportP1: `<strong>The app is free. It was and will remain free.</strong>`,
+        supportP2: `All apps are free and ad-free. Your help supports offline security and education.`,
+        supportPhoneLabel: `📱 TRANSFER BY PHONE NUMBER:`,
+        copyPhone: `📋 Copy number`,
+        copied: `✓ Copied`,
+        supportP3: `✅ Money arrives instantly. No commission. Safe.`,
+        supportP4: `❤️ Thanks for your support!`,
+        supportCatalog: `Catalog of free offline Anti-AI Shield apps`,
+        footer: `Anti-AI Qwen Academy • Free HTML Project • History EGE-2026 • 21 Tasks`,
+
+        // Card Content Translations
+        cardPart1Tag: `Part 1`,
+        cardPart1Title: `12 Short-Answer Tasks`,
+        cardPart1List: [
+          `The answer is a sequence of digits or word (phrase).`,
+          `Names of rulers are written together: NicholasSecond.`,
+          `Tasks 1–12 cover all periods of Russian history.`
+        ],
+        cardPart2Tag: `Part 2`,
+        cardPart2Title: `9 Extended-Response Tasks`,
+        cardPart2List: [
+          `Tasks 13–21 require a full solution.`,
+          `Work with source, map, image, terms.`,
+          `Graded by experts according to FIPI criteria.`
+        ],
+        cardTotalTag: `Total`,
+        cardTotalTitle: `21 Tasks, 210 Minutes`,
+        cardTotalList: [
+          `Time allowed: 3 hours 30 minutes (210 minutes).`,
+          `Maximum raw score: 42.`,
+          `Tasks 13–21 require an extended response.`
+        ],
+        cardAntiAITag: `Anti-AI`,
+        cardAntiAITitle: `Check, Don't Copy`,
+        cardAntiAIText: `Ready-made AI solutions often contain historical errors, wrong dates, and invented facts. For EGE-2026, you need to learn to check every statement.`,
+
+        cardStructTag: `Structure`,
+        cardStructTitle: `21 Tasks in Exam`,
+        cardStructText: `12 Part 1 short-answer tasks + 9 Part 2 extended-response tasks.`,
+        
+        cardFormsTag: `Part 1`,
+        cardFormsTitle: `Answer Forms`,
+        cardFormsText: `Sequence of digits or word (phrase). Names of rulers are written together.`,
+        
+        cardExtTag: `Part 2`,
+        cardExtTitle: `Extended Solution`,
+        cardExtText: `Tasks 13–21 require a full answer with justification.`,
+        
+        cardMapTag: `Map`,
+        cardMapTitle: `Working with Map`,
+        cardMapList: [
+          `Tasks 9–12 involve historical map.`,
+          `Must be able to identify cities, rivers, directions.`,
+          `Use atlas and contour maps for training.`
+        ],
+        
+        cardCultureTag: `Culture`,
+        cardCultureTitle: `Cultural Monuments`,
+        cardCultureList: [
+          `Task 7 — correspondence of monuments and characteristics.`,
+          `Task 16 — sculptural monuments.`,
+          `Need to know authors and eras.`
+        ],
+        
+        cardSheetTag: `Part 2`,
+        cardSheetTitle: `Tasks 13–21`,
+        cardSheetText: `Solutions are written in Answer Sheet No. 2. Write clearly, legibly, and with full justification.`,
+        
+        cardThreshTag: `Thresholds`,
+        cardThreshTitle: `Minimum Threshold`,
+        cardThreshText: `Minimum thresholds and conversion of raw scores to test scores are set officially. Before publishing, check them against Rosobrnadzor orders and FIPI materials for 2026.`,
+        
+        cardWarnTag: `Attention`,
+        cardWarnTitle: `Typical Mistakes`,
+        cardWarnText: `Wrong dates, confusion in personalities, errors in map work, incorrect arguments. Check every statement.`,
+
+        cardCritShortTag: `Part 1`,
+        cardCritShortTitle: `Short Answer`,
+        cardCritShortList: [
+          `Sequence of digits — no spaces or commas.`,
+          `Word (phrase) — without spaces.`,
+          `Names of rulers — together.`,
+          `Each symbol in a separate cell.`
+        ],
+        
+        cardCritExtTag: `Part 2`,
+        cardCritExtTitle: `Tasks 13–21`,
+        cardCritExtList: [
+          `Full solution in Sheet No. 2.`,
+          `Write the task number, then the solution.`,
+          `Solution must be justified.`,
+          `Write the answer clearly and legibly.`
+        ],
+        
+        cardCritGradeTag: `Grading`,
+        cardCritGradeTitle: `How Grading Works`,
+        cardCritGradeList: [
+          `Part 1: 1–2 points per task.`,
+          `Part 2: 2 to 4 points per task.`,
+          `Maximum raw score: 42.`,
+          `Exact distribution of points — in FIPI specification.`
+        ],
+        
+        cardCritToolsTag: `Tools`,
+        cardCritToolsTitle: `What Is Allowed`,
+        cardCritToolsList: [
+          `Scratch paper (not graded).`,
+          `Atlas is not provided, but maps must be known.`
+        ],
+        
+        cardCritDatesTag: `Dates`,
+        cardCritDatesTitle: `What to Remember`,
+        cardCritDatesList: [
+          `Key dates of all periods of Russian history.`,
+          `Main events and their participants.`,
+          `Cultural monuments and their authors.`,
+          `Terms and concepts.`
+        ],
+        
+        cardCritSelfTag: `Verification`,
+        cardCritSelfTitle: `How to Check Yourself`,
+        cardCritSelfList: [
+          `Check dates and events.`,
+          `Check logic of argumentation.`,
+          `Check correspondence of source and question.`,
+          `Judge whether the result is plausible.`
+        ],
+        
+        cardCritErrTag: `Attention`,
+        cardCritErrTitle: `Typical Mistakes`,
+        cardCritErrList: [
+          `Incorrect date.`,
+          `Confusion in personalities.`,
+          `Errors in map work.`,
+          `Incorrect argument.`
+        ],
+        
+        cardCritFrameTag: `Structure`,
+        cardCritFrameTitle: `Framework for Solving Part 2`,
+        cardCritFrameList: [
+          `1. Read condition and highlight key data.`,
+          `2. Write down solution process.`,
+          `3. Justify each step.`,
+          `4. Write the answer.`
+        ],
+
+        // Quiz Labels
+        qLabel1: `1. Question`,
+        qLabel2: `2. Task Info`,
+        qLabel3: `3. Trainer — Answer Yourself`,
+        resCorrect: `✅ Correct!`,
+        resWrong: `❌ Wrong.`,
+        resAns: `Correct answer:`,
+        resExp: `Explanation:`,
+        resSrc: `Source:`,
+        sumDone: `Auto-questions completed:`,
+        sumOf: `of`,
+        sumCorr: `Correct answers:`,
+        sumFin: `Answer all auto-questions to see the final result.`,
+        verExc: `Excellent result! You are well prepared for EGE-2026.`,
+        verGood: `Good, but analyze the task mistakes.`,
+        verNeed: `You need to carefully work through the EGE-2026 tasks.`,
+        confReset: `Reset all answers and shuffle options again?`,
+        errCopy: `Could not copy automatically. Number: `,
+        
+        // Part 2 Labels
+        p2Tag: `Part 2`,
+        p2Task: `Task`,
+        p2Hint: `Reference (check yourself):`,
+        p2InputLbl: `Your final answer or short self-check note (this session):`,
+        p2Placeholder: `Enter your answer or note...`,
+        p2ShowRef: `Show Reference`,
+        p2HideRef: `Hide Reference`,
+
+        // Topic Labels
+        topicAncient: `Ancient Rus`,
+        topicEmpire: `Russian Empire`,
+        topicSoviet: `USSR`,
+
+        // Timer Labels
+        timerHist: `History — 210 min`,
+        timerPractice: `Practice — 60 min`,
+        timerUp: `Time is up!`,
+        timerStart: `Start timer`,
+        timerPause: `Pause timer`,
+        timerReset: `Reset timer`
+      },
+      ru: {
+        docTitle: `Анти-ИИ Квен Академия | История ЕГЭ-2026`,
+        metaDesc: `Бесплатный тренажёр и чек-лист подготовки к ЕГЭ по истории 2026: структура экзамена, 12 заданий части 1, 9 заданий части 2, критерии, план подготовки.`,
+        brandTitle: `Анти-ИИ Квен Академия`,
+        brandSub: `Бесплатные проекты ЕГЭ-2026`,
+        navStructure: `Структура`,
+        navChanges: `Важно 2026`,
+        navCriteria: `Критерии`,
+        navTrainer: `Тренажёр`,
+        navPart2: `Часть 2`,
+        navChecklist: `Чек-лист`,
+        navPlan: `25 дней`,
+        navSupport: `Поддержать`,
+        badge: `Бесплатно • HTML • История ЕГЭ-2026 • 21 задание`,
+        h1: `Поможем сдать <span class="accent">ЕГЭ по истории</span> правильно`,
+        lead: `По каждому заданию: сначала вопрос, потом информация о том, что проверяет это задание, потом тренажёр. Варианты ответов перемешиваются, чтобы нельзя было угадать «всегда первый». Правильный ответ появляется только после твоего ответа.`,
+        actionTrainer: `Пройти тренажёр`,
+        actionPart2: `Часть 2`,
+        actionStructure: `Структура экзамена`,
+        quickStats: `Быстрая статистика`,
+        metricAnswered: `автовопросов пройдено`,
+        metricCorrect: `правильных ответов`,
+        metricChecklist: `чек-лист`,
+        noteReset: `Ответы и чек-лист сбрасываются при каждом открытии страницы.`,
+        structureTitle: `Структура ЕГЭ по истории`,
+        structureSub: `Всего 21 задание: 12 с кратким ответом и 9 с развёрнутым решением.`,
+        changesTitle: `Что важно учесть в ЕГЭ-2026`,
+        changesSub: `Эти пункты нужно держать в голове при подготовке.`,
+        criteriaTitle: `Критерии и правила`,
+        criteriaSub: `Что важно знать при выполнении заданий.`,
+        trainerTitle: `Тренажёр: часть 1`,
+        trainerSub: `По каждому заданию: <strong>1) вопрос</strong> → <strong>2) информация</strong> о том, что проверяет задание → <strong>3) тренажёр</strong>, где ты отвечаешь сам. Варианты ответов перемешиваются случайно — правильный ответ не всегда стоит первым.`,
+        filterShow: `Показать:`,
+        filterAll: `Все`,
+        filterAncient: `Древняя Русь`,
+        filterEmpire: `Российская империя`,
+        filterSoviet: `СССР`,
+        resetAll: `Сбросить все ответы`,
+        part2Title: `Часть 2: задания 13–21`,
+        part2Sub: `Эти задания требуют полного обоснованного решения. Автоматическая проверка одного финального ответа здесь некорректна: нужна ручная проверка по критериям. Ниже — условия заданий, контекст источника/изображения (как в КИМ), обязательные требования оформления и скрытые эталоны: сначала ответь сам, потом нажми «Показать эталон».`,
+        checklistTitle: `Чек-лист подготовки к ЕГЭ-2026`,
+        checklistSub: `Отмечай выполненные пункты — при новом открытии страницы чек-лист сбросится.`,
+        planTitle: `Полный курс 25 дней для 11 класса`,
+        planSub: `Маршрут подготовки по структуре ЕГЭ-2026.`,
+        dayPrefix: `День`,
+        supportTitle: `🤝 ПОДДЕРЖАТЬ ПРОЕКТ 💙`,
+        supportP1: `<strong>Приложение бесплатное. Было и останется.</strong>`,
+        supportP2: `Все приложения бесплатны и без рекламы. Ваша помощь помогает развитию офлайн-безопасности и образования.`,
+        supportPhoneLabel: `📱 ПЕРЕВОД ПО НОМЕРУ ТЕЛЕФОНА:`,
+        copyPhone: `📋 Копировать номер`,
+        copied: `✓ Скопировано`,
+        supportP3: `✅ Деньги придут мгновенно. Без комиссии. Безопасно.`,
+        supportP4: `❤️ Спасибо за поддержку!`,
+        supportCatalog: `Каталог бесплатных офлайн-приложений Anti-AI Shield`,
+        footer: `Анти-ИИ Квен Академия • Бесплатный HTML-проект • История ЕГЭ-2026 • 21 задание`,
+
+        // Card Content Translations
+        cardPart1Tag: `Часть 1`,
+        cardPart1Title: `12 заданий с кратким ответом`,
+        cardPart1List: [
+          `Ответ — последовательность цифр или слово (словосочетание).`,
+          `Имена государей пишутся слитно: НиколайВторой.`,
+          `Задания 1–12 охватывают все периоды истории России.`
+        ],
+        cardPart2Tag: `Часть 2`,
+        cardPart2Title: `9 заданий с развёрнутым решением`,
+        cardPart2List: [
+          `Задания 13–21 — полное решение.`,
+          `Работа с источником, картой, изображением, терминами.`,
+          `Проверяется экспертами по критериям ФИПИ.`
+        ],
+        cardTotalTag: `Итого`,
+        cardTotalTitle: `21 задание, 210 минут`,
+        cardTotalList: [
+          `Время выполнения — 3 часа 30 минут (210 минут).`,
+          `Максимальный первичный балл — 42.`,
+          `Задания 13–21 требуют развёрнутого ответа.`
+        ],
+        cardAntiAITag: `Анти-ИИ`,
+        cardAntiAITitle: `Проверяй, а не копируй`,
+        cardAntiAIText: `Готовые ИИ-решения часто содержат исторические ошибки, неверные даты и выдуманные факты. Для ЕГЭ-2026 нужно учиться проверять каждое утверждение.`,
+
+        cardStructTag: `Структура`,
+        cardStructTitle: `21 задание в работе`,
+        cardStructText: `12 заданий части 1 с кратким ответом + 9 заданий части 2 с развёрнутым решением.`,
+        
+        cardFormsTag: `Часть 1`,
+        cardFormsTitle: `Формы ответа`,
+        cardFormsText: `Последовательность цифр или слово (словосочетание). Имена государей пишутся слитно.`,
+        
+        cardExtTag: `Часть 2`,
+        cardExtTitle: `Развёрнутое решение`,
+        cardExtText: `Задания 13–21 требуют полного ответа с обоснованием.`,
+        
+        cardMapTag: `Карта`,
+        cardMapTitle: `Работа с картой`,
+        cardMapList: [
+          `Задания 9–12 связаны с исторической картой.`,
+          `Нужно уметь определять города, реки, направления.`,
+          `Используй атлас и контурные карты для тренировки.`
+        ],
+        
+        cardCultureTag: `Культура`,
+        cardCultureTitle: `Памятники культуры`,
+        cardCultureList: [
+          `Задание 7 — соответствие памятников и характеристик.`,
+          `Задание 16 — скульптурные памятники.`,
+          `Нужно знать авторов и эпохи.`
+        ],
+        
+        cardSheetTag: `Часть 2`,
+        cardSheetTitle: `Задания 13–21`,
+        cardSheetText: `Решения записываются в бланк ответов № 2. Нужно писать чётко, разборчиво и с полным обоснованием.`,
+        
+        cardThreshTag: `Пороги`,
+        cardThreshTitle: `Минимальный порог`,
+        cardThreshText: `Минимальные пороги и перевод первичных баллов в тестовые устанавливаются официально. Перед публикацией сверяйте их с приказами Рособрнадзора и материалами ФИПИ на 2026 год.`,
+        
+        cardWarnTag: `Внимание`,
+        cardWarnTitle: `Типичные ошибки`,
+        cardWarnText: `Неверные даты, путаница в персоналиях, ошибки в работе с картой, неверные аргументы. Проверяй каждое утверждение.`,
+
+        cardCritShortTag: `Часть 1`,
+        cardCritShortTitle: `Краткий ответ`,
+        cardCritShortList: [
+          `Последовательность цифр — без пробелов и запятых.`,
+          `Слово (словосочетание) — без пробелов.`,
+          `Имена государей — слитно.`,
+          `Каждый символ — в отдельной клетке.`
+        ],
+        
+        cardCritExtTag: `Часть 2`,
+        cardCritExtTitle: `Задания 13–21`,
+        cardCritExtList: [
+          `Полное решение в бланке № 2.`,
+          `Записывается номер задания, затем решение.`,
+          `Решение должно быть обоснованным.`,
+          `Ответ записывается чётко и разборчиво.`
+        ],
+        
+        cardCritGradeTag: `Оценка`,
+        cardCritGradeTitle: `Как оценивают`,
+        cardCritGradeList: [
+          `Часть 1: 1–2 балла за задание.`,
+          `Часть 2: от 2 до 4 баллов за задание.`,
+          `Максимальный первичный балл — 42.`,
+          `Точное распределение баллов — в спецификации ФИПИ.`
+        ],
+        
+        cardCritToolsTag: `Инструменты`,
+        cardCritToolsTitle: `Что разрешено`,
+        cardCritToolsList: [
+          `Черновик (не учитывается).`,
+          `Атлас не выдаётся, но карты нужно знать.`
+        ],
+        
+        cardCritDatesTag: `Даты`,
+        cardCritDatesTitle: `Что нужно помнить`,
+        cardCritDatesList: [
+          `Ключевые даты всех периодов истории России.`,
+          `Основные события и их участники.`,
+          `Памятники культуры и их авторы.`,
+          `Термины и понятия.`
+        ],
+        
+        cardCritSelfTag: `Проверка`,
+        cardCritSelfTitle: `Как проверять себя`,
+        cardCritSelfList: [
+          `Проверь даты и события.`,
+          `Проверь логику аргументации.`,
+          `Проверь соответствие источника и вопроса.`,
+          `Оцени правдоподобность результата.`
+        ],
+        
+        cardCritErrTag: `Внимание`,
+        cardCritErrTitle: `Типичные ошибки`,
+        cardCritErrList: [
+          `Неверная дата.`,
+          `Путаница в персоналиях.`,
+          `Ошибки в работе с картой.`,
+          `Неверный аргумент.`
+        ],
+        
+        cardCritFrameTag: `Структура`,
+        cardCritFrameTitle: `Каркас решения части 2`,
+        cardCritFrameList: [
+          `1. Прочитать условие и выделить ключевые данные.`,
+          `2. Записать ход решения.`,
+          `3. Обосновать каждый шаг.`,
+          `4. Записать ответ.`
+        ],
+
+        // Quiz Labels
+        qLabel1: `1. Вопрос`,
+        qLabel2: `2. Информация о задании`,
+        qLabel3: `3. Тренажёр — ответь сам`,
+        resCorrect: `✅ Правильно!`,
+        resWrong: `❌ Неправильно.`,
+        resAns: `Правильный ответ:`,
+        resExp: `Пояснение:`,
+        resSrc: `Источник:`,
+        sumDone: `Пройдено автовопросов:`,
+        sumOf: `из`,
+        sumCorr: `Правильных ответов:`,
+        sumFin: `Ответь на все автовопросы, чтобы увидеть итог.`,
+        verExc: `Отличный результат! Ты хорошо готов к ЕГЭ-2026.`,
+        verGood: `Хорошо, но разбери ошибки по заданиям.`,
+        verNeed: `Нужно внимательно проработать задания ЕГЭ-2026.`,
+        confReset: `Сбросить все ответы и перемешать варианты заново?`,
+        errCopy: `Не удалось скопировать автоматически. Номер: `,
+        
+        // Part 2 Labels
+        p2Tag: `Часть 2`,
+        p2Task: `Задание`,
+        p2Hint: `Эталон (проверь себя):`,
+        p2InputLbl: `Твой итог для самопроверки (в этой сессии):`,
+        p2Placeholder: `Впиши свой ответ или пометку...`,
+        p2ShowRef: `Показать эталон`,
+        p2HideRef: `Скрыть эталон`,
+
+        // Topic Labels
+        topicAncient: `Древняя Русь`,
+        topicEmpire: `Российская империя`,
+        topicSoviet: `СССР`,
+
+        // Timer Labels
+        timerHist: `История — 210 мин`,
+        timerPractice: `Тренировка — 60 мин`,
+        timerUp: `Время вышло!`,
+        timerStart: `Запустить таймер`,
+        timerPause: `Пауза таймера`,
+        timerReset: `Сброс таймера`
+      }
+    };
+
+    let currentLang = "en";
+
+    function loc(key) {
+      return I18N[currentLang][key] || "";
+    }
+
+    function escapeHtml(str) {
+      return String(str).replace(/[&<>"']/g, function (m) {
+        return {
+          "&": "&amp;",
+          "<": "&lt;",
+          ">": "&gt;",
+          '"': "&quot;",
+          "'": "&#39;"
+        }[m];
+      });
+    }
+
+    function scrollToId(id) {
+      const el = document.getElementById(id);
+      if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+
+    // ============================================================
+    // DATA STRUCTURES (Translated Content)
+    // ============================================================
+    
+    const structureCardsData = [
+      { tagKey: "cardPart1Tag", titleKey: "cardPart1Title", listKey: "cardPart1List", cls: "warn-card", tagCls: "orange" },
+      { tagKey: "cardPart2Tag", titleKey: "cardPart2Title", listKey: "cardPart2List", cls: "danger-card", tagCls: "red" },
+      { tagKey: "cardTotalTag", titleKey: "cardTotalTitle", listKey: "cardTotalList", cls: "success-card", tagCls: "green" },
+      { tagKey: "cardAntiAITag", titleKey: "cardAntiAITitle", textKey: "cardAntiAIText", cls: "", tagCls: "" }
+    ];
+
+    const changesCardsData = [
+      { tagKey: "cardStructTag", titleKey: "cardStructTitle", textKey: "cardStructText", cls: "success-card", tagCls: "green" },
+      { tagKey: "cardFormsTag", titleKey: "cardFormsTitle", textKey: "cardFormsText", cls: "warn-card", tagCls: "orange" },
+      { tagKey: "cardExtTag", titleKey: "cardExtTitle", textKey: "cardExtText", cls: "warn-card", tagCls: "orange" },
+      { tagKey: "cardMapTag", titleKey: "cardMapTitle", listKey: "cardMapList", cls: "success-card", tagCls: "green" },
+      { tagKey: "cardCultureTag", titleKey: "cardCultureTitle", listKey: "cardCultureList", cls: "success-card", tagCls: "green" },
+      { tagKey: "cardSheetTag", titleKey: "cardSheetTitle", textKey: "cardSheetText", cls: "", tagCls: "" },
+      { tagKey: "cardThreshTag", titleKey: "cardThreshTitle", textKey: "cardThreshText", cls: "warn-card", tagCls: "orange" },
+      { tagKey: "cardWarnTag", titleKey: "cardWarnTitle", textKey: "cardWarnText", cls: "danger-card", tagCls: "red" }
+    ];
+
+    const criteriaCardsData = [
+      { tagKey: "cardCritShortTag", titleKey: "cardCritShortTitle", listKey: "cardCritShortList", cls: "", tagCls: "" },
+      { tagKey: "cardCritExtTag", titleKey: "cardCritExtTitle", listKey: "cardCritExtList", cls: "warn-card", tagCls: "orange" },
+      { tagKey: "cardCritGradeTag", titleKey: "cardCritGradeTitle", listKey: "cardCritGradeList", cls: "danger-card", tagCls: "red" },
+      { tagKey: "cardCritToolsTag", titleKey: "cardCritToolsTitle", listKey: "cardCritToolsList", cls: "", tagCls: "" },
+      { tagKey: "cardCritDatesTag", titleKey: "cardCritDatesTitle", listKey: "cardCritDatesList", cls: "success-card", tagCls: "green" },
+      { tagKey: "cardCritSelfTag", titleKey: "cardCritSelfTitle", listKey: "cardCritSelfList", cls: "success-card", tagCls: "green" },
+      { tagKey: "cardCritErrTag", titleKey: "cardCritErrTitle", listKey: "cardCritErrList", cls: "danger-card", tagCls: "red" },
+      { tagKey: "cardCritFrameTag", titleKey: "cardCritFrameTitle", listKey: "cardCritFrameList", cls: "", tagCls: "" }
+    ];
+
+    const checklistItemsData = [
+      { key: "ch1", labelEn: "Reviewed chronology of Ancient Rus", labelRu: "Повторил хронологию Древней Руси" },
+      { key: "ch2", labelEn: "Practiced dates and events of Muscovite State", labelRu: "Отработал даты и события Московского государства" },
+      { key: "ch3", labelEn: "Reviewed Romanov rule until 1917", labelRu: "Повторил правление Романовых до 1917 года" },
+      { key: "ch4", labelEn: "Practiced Soviet period of history", labelRu: "Отработал советский период истории" },
+      { key: "ch5", labelEn: "Reviewed Great Patriotic War", labelRu: "Повторил Великую Отечественную войну" },
+      { key: "ch6", labelEn: "Practiced post-war period and modern Russia", labelRu: "Отработал послевоенный период и современную Россию" },
+      { key: "ch7", labelEn: "Reviewed cultural monuments and their authors", labelRu: "Повторил памятники культуры и их авторов" },
+      { key: "ch8", labelEn: "Practiced historical terms and concepts", labelRu: "Отработал исторические термины и понятия" },
+      { key: "ch9", labelEn: "Checked work with historical map", labelRu: "Проверил работу с исторической картой" },
+      { key: "ch10", labelEn: "Practiced analysis of historical source", labelRu: "Отработал анализ исторического источника" },
+      { key: "ch11", labelEn: "Reviewed main dates and events", labelRu: "Повторил основные даты и события" },
+      { key: "ch12", labelEn: "Practiced work with images", labelRu: "Отработал работу с изображениями" },
+      { key: "ch13", labelEn: "Performed oral analysis of source in 3–4 minutes", labelRu: "Провёл устный анализ источника за 3–4 минуты" },
+      { key: "ch14", labelEn: "Checked that there are no historical errors in the solution", labelRu: "Проверил, что в решении нет исторических ошибок" },
+      { key: "ch15", labelEn: "Made sure all steps of the solution are justified", labelRu: "Убедился, что все шаги решения обоснованы" },
+      { key: "ch16", labelEn: "Solved 12 Part 1 tasks under time", labelRu: "Решил 12 заданий части 1 на время" },
+      { key: "ch17", labelEn: "Practiced task 18 (causes and effects)", labelRu: "Отработал задание 18 (причины и следствия)" },
+      { key: "ch18", labelEn: "Practiced task 19 (terms)", labelRu: "Отработал задание 19 (термины)" },
+      { key: "ch19", labelEn: "Practiced task 20 (theses)", labelRu: "Отработал задание 20 (тезисы)" },
+      { key: "ch20", labelEn: "Practiced task 21 (arguments)", labelRu: "Отработал задание 21 (аргументы)" },
+      { key: "ch21", labelEn: "Memorized structure: 12 Part 1 tasks + 9 Part 2 tasks = 21", labelRu: "Запомнил структуру: 12 заданий части 1 + 9 заданий части 2 = 21" }
+    ];
+
+    const planDaysData = [
+      { day: 1, critical: true, en: "Diagnostics: exam structure, 12 Part 1 tasks + 9 Part 2 tasks, weak topics.", ru: "Диагностика: структура экзамена, 12 заданий части 1 + 9 заданий части 2, слабые темы." },
+      { day: 2, critical: false, en: "Ancient Rus: main events and dates.", ru: "Древняя Русь: основные события и даты." },
+      { day: 3, critical: false, en: "Muscovite State: Ivan III, Ivan the Terrible.", ru: "Московское государство: Иван III, Иван Грозный." },
+      { day: 4, critical: false, en: "Time of Troubles and first Romanovs.", ru: "Смутное время и первые Романовы." },
+      { day: 5, critical: false, en: "Peter I and era of palace coups.", ru: "Пётр I и эпоха дворцовых переворотов." },
+      { day: 6, critical: false, en: "Catherine II and Paul I.", ru: "Екатерина II и Павел I." },
+      { day: 7, critical: false, en: "19th century: Alexander I, Nicholas I.", ru: "XIX век: Александр I, Николай I." },
+      { day: 8, critical: false, en: "Great reforms of Alexander II.", ru: "Великие реформы Александра II." },
+      { day: 9, critical: false, en: "Alexander III and beginning of 20th century.", ru: "Александр III и начало XX века." },
+      { day: 10, critical: false, en: "Revolution of 1917 and Civil War.", ru: "Революция 1917 года и Гражданская война." },
+      { day: 11, critical: false, en: "USSR in 1920–1930s.", ru: "СССР в 1920–1930-е годы." },
+      { day: 12, critical: false, en: "Great Patriotic War.", ru: "Великая Отечественная война." },
+      { day: 13, critical: false, en: "Post-war period and Thaw.", ru: "Послевоенный период и оттепель." },
+      { day: 14, critical: false, en: "Stagnation and Perestroika.", ru: "Застой и перестройка." },
+      { day: 15, critical: true, en: "Modern Russia (1991–2020s).", ru: "Современная Россия (1991–2020-е)." },
+      { day: 16, critical: true, en: "Culture of Russia: main monuments.", ru: "Культура России: основные памятники." },
+      { day: 17, critical: true, en: "Historical terms and concepts.", ru: "Исторические термины и понятия." },
+      { day: 18, critical: true, en: "Working with historical map.", ru: "Работа с исторической картой." },
+      { day: 19, critical: true, en: "Analysis of historical sources.", ru: "Анализ исторических источников." },
+      { day: 20, critical: true, en: "Tasks 18–21: causes, effects, arguments.", ru: "Задания 18–21: причины, следствия, аргументы." },
+      { day: 21, critical: true, en: "Training Part 1 under time.", ru: "Тренировка части 1 на время." },
+      { day: 22, critical: true, en: "Training Part 2 under time.", ru: "Тренировка части 2 на время." },
+      { day: 23, critical: false, en: "Full practice test: Part 1.", ru: "Полный пробник: часть 1." },
+      { day: 24, critical: false, en: "Full practice test: Part 2.", ru: "Полный пробник: часть 2." },
+      { day: 25, critical: false, en: "Final checklist and mistake analysis.", ru: "Финальный чек-лист и разбор ошибок." }
+    ];
+
+    // Quiz Data with Separate Options Arrays for RU and EN
+    const quizRaw = [
+      {
+        id: 1, topic: "ancient", task: 1,
+        en: {
+          text: `Establish correspondence between events and years.\nA) defeat of P.N. Wrangel's army in Crimea\nB) dissolution of II State Duma of Russian Empire\nC) inclusion of Smolensk land into Russian state\nD) complete liberation of Leningrad from enemy blockade\n\n1) 1514  2) 1774  3) 1907  4) 1920  5) 1944  6) 1945`,
+          info: `Task 1 checks knowledge of key dates in Russian history.`,
+          explanation: `A) Defeat of Wrangel — 1920 (4). B) Dissolution of II Duma — 1907 (3). C) Inclusion of Smolensk — 1514 (1). D) Liberation of Leningrad — 1944 (5). Total: 4315.`,
+          source: `History EGE-2026, Task 1`
+        },
+        ru: {
+          text: `Установите соответствие между событиями и годами.\nА) разгром армии П.Н. Врангеля в Крыму\nБ) роспуск II Государственной думы Российской империи\nВ) включение Смоленской земли в состав Русского государства\nГ) полное освобождение Ленинграда от вражеской блокады\n\n1) 1514 г.  2) 1774 г.  3) 1907 г.  4) 1920 г.  5) 1944 г.  6) 1945 г.`,
+          info: `Задание 1 проверяет знание ключевых дат истории России.`,
+          explanation: `А) разгром Врангеля — 1920 г. (4). Б) роспуск II Госдумы — 1907 г. (3). В) включение Смоленска — 1514 г. (1). Г) освобождение Ленинграда — 1944 г. (5). Итого: 4315.`,
+          source: `История ЕГЭ-2026, задание 1`
+        },
+        enOptions: ["4315", "4521", "3514", "1234"],
+        ruOptions: ["4315", "4521", "3514", "1234"],
+        correctIndex: 0
+      },
+      {
+        id: 2, topic: "ancient", task: 2,
+        en: {
+          text: `Arrange in chronological order.\n1) establishment of Tokugawa shogunate\n2) siege of Pskov by Stephen Báthory's army\n3) issuance of Charter to Towns`,
+          info: `Task 2 checks knowledge of chronology.`,
+          explanation: `Siege of Pskov — 1581 (2). Establishment of Tokugawa shogunate — 1603 (1). Charter to Towns — 1785 (3). Total: 213.`,
+          source: `History EGE-2026, Task 2`
+        },
+        ru: {
+          text: `Расположите в хронологической последовательности.\n1) установление сёгуната Токугава\n2) осада Пскова войском Стефана Батория\n3) издание Жалованной грамоты городам`,
+          info: `Задание 2 проверяет знание хронологии.`,
+          explanation: `Осада Пскова — 1581 г. (2). Установление сёгуната Токугава — 1603 г. (1). Жалованная грамота городам — 1785 г. (3). Итого: 213.`,
+          source: `История ЕГЭ-2026, задание 2`
+        },
+        enOptions: ["213", "132", "231", "321"],
+        ruOptions: ["213", "132", "231", "321"],
+        correctIndex: 0
+      },
+      {
+        id: 3, topic: "empire", task: 3,
+        en: {
+          text: `Establish correspondence between processes and facts.\nA) internal policy of Alexander II\nB) tax reform of Princess Olga\nC) mass collectivization in USSR\nD) internal policy of Russia under Elena Glinskaya\n\n1) Stalin's article "Dizzy with Success"\n2) introduction of uroki and pogosty\n3) issuance of New Trade Statute\n4) introduction of Moscow ruble\n5) introduction of forbidden years\n6) abolition of serfdom`,
+          info: `Task 3 checks knowledge of facts related to historical processes.`,
+          explanation: `A) Alexander II — abolition of serfdom (6). B) Olga — uroki and pogosty (2). C) Collectivization — article "Dizzy with Success" (1). D) Elena Glinskaya — Moscow ruble (4). Total: 6214.`,
+          source: `History EGE-2026, Task 3`
+        },
+        ru: {
+          text: `Установите соответствие между процессами и фактами.\nА) внутренняя политика Александра II\nБ) налоговая реформа княгини Ольги\nВ) сплошная коллективизация в СССР\nГ) внутренняя политика России при Елене Глинской\n\n1) статья Сталина «Головокружение от успехов»\n2) введение уроков и погостов\n3) издание Новоторгового устава\n4) введение московского рубля\n5) введение заповедных лет\n6) отмена крепостного права`,
+          info: `Задание 3 проверяет знание фактов, относящихся к историческим процессам.`,
+          explanation: `А) Александр II — отмена крепостного права (6). Б) Ольга — уроки и погосты (2). В) Коллективизация — статья «Головокружение от успехов» (1). Г) Елена Глинская — московский рубль (4). Итого: 6214.`,
+          source: `История ЕГЭ-2026, задание 3`
+        },
+        enOptions: ["6214", "6213", "5214", "6215"],
+        ruOptions: ["6214", "6213", "5214", "6215"],
+        correctIndex: 0
+      },
+      {
+        id: 4, topic: "ancient", task: 4,
+        en: {
+          text: `Fill in empty cells of table.\nA) Suppression of streltsy uprising — ?\nB) Sviyazhsk — ?\nC) ? — Conquest of city by Prince Svyatoslav\nD) Yaroslavl — ?\n\n1) 1300s  2) 960s  3) Itil  4) 1910s  5) annexation to Moscow  6) captured during mutiny  7) camp during siege of Kazan  8) Astrakhan  9) Pereslavl-Zalessky`,
+          info: `Task 4 checks knowledge of historical events and geographical objects.`,
+          explanation: `A) Astrakhan uprising 1705–1706 — Astrakhan (8). B) Sviyazhsk founded in 1551 as camp during siege of Kazan (7). C) Itil — capital of Khazaria, conquered by Svyatoslav (3). D) 960s — campaign of Svyatoslav against Khazaria (2). E) Yaroslavl uprising 1918 — captured during mutiny (6). F) 1910s (4). Total: 873264.`,
+          source: `History EGE-2026, Task 4`
+        },
+        ru: {
+          text: `Заполните пустые ячейки таблицы.\nА) Подавление восстания стрельцов — ?\nБ) Свияжск — ?\nВ) ? — Завоевание города князем Святославом\nГ) Ярославль — ?\n\n1) 1300-е гг.  2) 960-е гг.  3) Итиль  4) 1910-е гг.  5) присоединение к Москве  6) захват в ходе мятежа  7) лагерь при осаде Казани  8) Астрахань  9) Переславль-Залесский`,
+          info: `Задание 4 проверяет знание исторических событий и географических объектов.`,
+          explanation: `А) Астраханское восстание 1705–1706 гг. — Астрахань (8). Б) Свияжск основан в 1551 г. как лагерь при осаде Казани (7). В) Итиль — столица Хазарии, завоёвана Святославом (3). Г) 960-е гг. — поход Святослава на Хазарию (2). Д) Ярославское восстание 1918 г. — захват в ходе мятежа (6). Е) 1910-е гг. (4). Итого: 873264.`,
+          source: `История ЕГЭ-2026, задание 4`
+        },
+        enOptions: ["873264", "986574", "614859", "873625"],
+        ruOptions: ["873264", "986574", "614859", "873625"],
+        correctIndex: 0
+      },
+      {
+        id: 5, topic: "soviet", task: 5,
+        en: {
+          text: `Establish correspondence between events and participants.\nA) Battle for Moscow\nB) transfer of Zaporozhye Host lands in 17th c.\nC) Special Military Operation (SMO)\nD) Crimean War\n\n1) A.N. Zhikharev\n2) P.S. Nakhimov\n3) M.M. Speransky\n4) V.V. Talalikhin\n5) B.M. Khmelnytsky\n6) A.V. Kolchak`,
+          info: `Task 5 checks knowledge of historical personalities.`,
+          explanation: `A) Battle for Moscow — V.V. Talalikhin (4). B) Transfer of Zaporozhye Host — B.M. Khmelnytsky (5). C) SMO — A.N. Zhikharev (1). D) Crimean War — P.S. Nakhimov (2). Total: 4512.`,
+          source: `History EGE-2026, Task 5`
+        },
+        ru: {
+          text: `Установите соответствие между событиями и участниками.\nА) битва за Москву\nБ) переход земель Войска Запорожского в XVII в.\nВ) Специальная военная операция (СВО)\nГ) Крымская война\n\n1) А.Н. Жихарев\n2) П.С. Нахимов\n3) М.М. Сперанский\n4) В.В. Талалихин\n5) Б.М. Хмельницкий\n6) А.В. Колчак`,
+          info: `Задание 5 проверяет знание исторических персоналий.`,
+          explanation: `А) Битва за Москву — В.В. Талалихин (4). Б) Переход Войска Запорожского — Б.М. Хмельницкий (5). В) СВО — А.Н. Жихарев (1). Г) Крымская война — П.С. Нахимов (2). Итого: 4512.`,
+          source: `История ЕГЭ-2026, задание 5`
+        },
+        enOptions: ["4512", "4513", "4612", "4521"],
+        ruOptions: ["4512", "4513", "4612", "4521"],
+        correctIndex: 0
+      },
+      {
+        id: 6, topic: "empire", task: 6,
+        en: {
+          text: `From report of Russian commander to emperor.\n\n"After leaving borders of Italy... passed through chains of terrible mountains... There appears before our eyes Mount Saint Gotthard... Troops of Your Imperial Majesty occupy bridge named 'Devil's Bridge'..." \n\nChoose correct statements.`,
+          info: `Task 6 checks ability to analyze historical source. Refers to Suvorov crossing Alps in 1799.`,
+          explanation: `1) Suvorov received rank Generalissimo — true. 2) Troops protected by heavenly forces — true. 4) Overcame natural obstacles and enemy resistance — true. 6) Enemy — French army — true. 3) Locals were friendly (praised liberators) — false. 5) Report addressed to Paul I, not Alexander I — false. Total: 1246.`,
+          source: `History EGE-2026, Task 6`
+        },
+        ru: {
+          text: `Из донесения российского полководца императору.\n\n«Выступив из пределов Италии... переходило оное чрез цепи страшных гор... Там является зрению нашему гора Сент-Готард... Войска Вашего Императорского величества занимают мост, проименованный \"Чёртов мост\"...»\n\nВыберите верные суждения.`,
+          info: `Задание 6 проверяет умение анализировать исторический источник. Речь идёт о переходе Суворова через Альпы в 1799 году.`,
+          explanation: `1) Суворов получил звание генералиссимуса — верно. 2) Войска под защитой небесных сил — верно. 4) Преодолевали природные преграды и сопротивление врага — верно. 6) Противник — французская армия — верно. 3) Местные жители были дружественны (славу избавителей) — неверно. 5) Донесение адресовано Павлу I, а не Александру I — неверно. Итого: 1246.`,
+          source: `История ЕГЭ-2026, задание 6`
+        },
+        enOptions: ["1246", "146", "136", "246"],
+        ruOptions: ["1246", "146", "136", "246"],
+        correctIndex: 0
+      },
+      {
+        id: 7, topic: "empire", task: 7,
+        en: {
+          text: `Establish correspondence between cultural monuments and characteristics.\nA) "Life of Archpriest Avvakum"\nB) play "Days of Turbin"\nC) "Zadonshchina"\nD) novel "The Idiot"\n\n1) Dedicated to events of 14th c.\n2) One of first autobiographical works.\n3) Author — V.V. Mayakovsky.\n4) Dedicated to events of Civil War.\n5) Dedicated to Northern War.\n6) Author — F.M. Dostoevsky.`,
+          info: `Task 7 checks knowledge of cultural monuments and their characteristics.`,
+          explanation: `A) "Life of Archpriest Avvakum" — autobiographical (2). B) "Days of Turbin" — Civil War (4). C) "Zadonshchina" — 14th c. (1). D) "The Idiot" — F.M. Dostoevsky (6). Total: 2416.`,
+          source: `History EGE-2026, Task 7`
+        },
+        ru: {
+          text: `Установите соответствие между памятниками культуры и характеристиками.\nА) «Житие протопопа Аввакума»\nБ) пьеса «Дни Турбиных»\nВ) «Задонщина»\nГ) роман «Идиот»\n\n1) Посвящено событиям XIV в.\n2) Одно из первых автобиографических произведений.\n3) Автор — В.В. Маяковский.\n4) Посвящено событиям Гражданской войны.\n5) Посвящено Северной войне.\n6) Автор — Ф.М. Достоевский.`,
+          info: `Задание 7 проверяет знание памятников культуры и их характеристик.`,
+          explanation: `А) «Житие протопопа Аввакума» — автобиографическое (2). Б) «Дни Турбиных» — Гражданская война (4). В) «Задонщина» — XIV в. (1). Г) «Идиот» — Ф.М. Достоевский (6). Итого: 2416.`,
+          source: `История ЕГЭ-2026, задание 7`
+        },
+        enOptions: ["2416", "2635", "6152", "5631"],
+        ruOptions: ["2416", "2635", "6152", "5631"],
+        correctIndex: 0
+      },
+      {
+        id: 8, topic: "soviet", task: 8, needsImage: true,
+        en: {
+          text: `Fill in blank in sentence: "Event, anniversary dedicated to given matchbox label, happened in nineteen ______ year".\n\nOn label: "VICTORY SQUARE MINSK. JULY 3 — DAY OF LIBERATION OF MINSK FROM FASCIST INVADERS".`,
+          info: `Task 8 checks ability to work with image. Minsk liberated July 3, 1944.`,
+          explanation: `Minsk liberated July 3, 1944. Answer: forty-fourth.`,
+          source: `History EGE-2026, Task 8`
+        },
+        ru: {
+          text: `Заполните пропуск в предложении: «Событие, юбилею которого посвящена данная спичечная этикетка, произошло в тысяча девятьсот ______ году».\n\nНа этикетке: «ПЛОЩАДЬ ПОБЕДЫ г. МИНСК. 3 ИЮЛЯ — ДЕНЬ ОСВОБОЖДЕНИЯ МИНСКА ОТ ФАШИСТСКИХ ЗАХВАТЧИКОВ».`,
+          info: `Задание 8 проверяет умение работать с изображением. Минск был освобождён 3 июля 1944 года.`,
+          explanation: `Минск освобождён 3 июля 1944 года. Ответ: сорок четвёртом.`,
+          source: `История ЕГЭ-2026, задание 8`
+        },
+        enOptions: ["forty-fourth", "forty-third", "forty-fifth", "forty-second"],
+        ruOptions: ["сорок четвёртом", "сорок третьем", "сорок пятом", "сорок втором"],
+        correctIndex: 0
+      },
+      {
+        id: 9, topic: "soviet", task: 9, needsImage: true,
+        en: {
+          text: `Fill in blank in sentence: "Events marked on scheme by arrows started in nineteen ______ year". Write answer as word (combination of words).`,
+          info: `Task checks ability to work with historical map. Refers to East Prussian Offensive started Jan 13, 1945.`,
+          explanation: `Scheme shows directions of Soviet troops strikes in East Prussia (Konigsberg, Tilsit, Instenburg) during East Prussian Offensive. Operation started Jan 13, 1945. Answer: forty-fifth.`,
+          source: `History EGE-2026, Task 9`
+        },
+        ru: {
+          text: `Заполните пропуск в предложении: «События, обозначенные на схеме стрелками, начались в тысяча девятьсот ______ году». Ответ запишите словом (сочетанием слов).`,
+          info: `Задание проверяет умение работать с исторической картой. Речь идёт о Восточно-Прусской операции, которая началась 13 января 1945 года.`,
+          explanation: `На карте показаны направления ударов советских войск в Восточную Пруссию (Кёнигсберг, Тильзит, Инстербург) в ходе Восточно-Прусской операции. Операция началась 13 января 1945 года. Ответ: сорок пятом.`,
+          source: `История ЕГЭ-2026, задание 9`
+        },
+        enOptions: ["forty-fifth", "forty-fourth", "forty-third", "forty-second"],
+        ruOptions: ["сорок пятом", "сорок четвёртом", "сорок третьем", "сорок втором"],
+        correctIndex: 0
+      },
+      {
+        id: 10, topic: "soviet", task: 10, needsImage: true,
+        en: {
+          text: `Indicate name of city marked on scheme by digit "1" in period when events reflected on scheme happened.`,
+          info: `Task checks ability to work with historical map. Refers to East Prussian Offensive 1945.`,
+          explanation: `Digit "1" marks fortress-city in ring of encirclement on Baltic coast — Konigsberg. Renamed Kaliningrad in 1946, i.e. later than events. Answer: Konigsberg.`,
+          source: `History EGE-2026, Task 10`
+        },
+        ru: {
+          text: `Укажите название города, обозначенного на схеме цифрой «1», в период, когда произошли отражённые на схеме события.`,
+          info: `Задание проверяет умение работать с исторической картой. Речь идёт о Восточно-Прусской операции 1945 года.`,
+          explanation: `Цифрой «1» помечен город-крепость в кольце окружения на побережье Балтики — Кёнигсберг. В 1946 году переименован в Калининград, то есть позже событий. Ответ: Кёнигсберг.`,
+          source: `История ЕГЭ-2026, задание 10`
+        },
+        enOptions: ["Konigsberg", "Leningrad", "Kaliningrad", "Tilsit"],
+        ruOptions: ["Кёнигсберг", "Ленинград", "Калининград", "Тильзит"],
+        correctIndex: 0
+      },
+      {
+        id: 11, topic: "soviet", task: 11, needsImage: true,
+        en: {
+          text: `Read text about events reflected on scheme and, using scheme, indicate name of river which is twice omitted in text.\n\n"Crossing to left bank ___ via erected bridge on January 15, Red Army began developing offensive along left bank of this river towards Tilsit..."`,
+          info: `Task checks ability to work with map and text. Refers to battles for Tilsit in January 1945.`,
+          explanation: `Tilsit located on Niemen River. Text describes battles for Tilsit during East Prussian Offensive. Omitted name is Niemen.`,
+          source: `History EGE-2026, Task 11`
+        },
+        ru: {
+          text: `Прочтите текст о событиях, отражённых на схеме, и, используя схему, укажите название реки, которое дважды пропущено в тексте.\n\n«Перейдя на левый берег ___ по наведённому мосту 15 января, Красная армия начала развивать наступление вдоль левого берега этой реки на Тильзит...»`,
+          info: `Задание проверяет умение работать с картой и текстом. Речь идёт о боях за Тильзит в январе 1945 года.`,
+          explanation: `Тильзит расположен на реке Неман. В тексте описаны бои за Тильзит в ходе Восточно-Прусской операции. Пропущено название реки Неман.`,
+          source: `История ЕГЭ-2026, задание 11`
+        },
+        enOptions: ["Niemen", "Vistula", "Oder", "Danube"],
+        ruOptions: ["Неман", "Висла", "Одер", "Дунай"],
+        correctIndex: 0
+      },
+      {
+        id: 12, topic: "soviet", task: 12, needsImage: true,
+        en: {
+          text: `Which judgments relating to scheme are correct? Write numbers.\n1) 3rd Belorussian Front commanded by G.K. Zhukov at start of events.\n2) Participant of events was I.V. Panfilov.\n3) During events Red Army occupied city Wormditt.\n4) By start of events Tehran Conference of "Big Three" had already taken place.\n5) Digit "2" on scheme marks Warsaw.\n6) During events General of Army I.D. Chernyakhovsky died.`,
+          info: `Task checks knowledge of WWII events and ability to work with map.`,
+          explanation: `1) False: 3rd Belorussian Front commanded by I.D. Chernyakhovsky, not Zhukov. 2) False: Panfilov died in 1941. 3) True: Wormditt occupied during operation. 4) True: Tehran Conference held in 1943. 5) True: digit "2" marks Warsaw — city not signed with word, must be identified by geography (between Modlin and Radom, on Vistula). 6) True: Chernyakhovsky died Feb 18, 1945. Total: 3456.`,
+          source: `History EGE-2026, Task 12`
+        },
+        ru: {
+          text: `Какие суждения, относящиеся к схеме, являются верными? Запишите цифры.\n1) 3-м Белорусским фронтом в начале событий командовал Г.К. Жуков.\n2) Участником событий был И.В. Панфилов.\n3) В ходе событий Красная армия заняла город Вормдитт.\n4) К началу событий уже состоялась Тегеранская конференция «Большой тройки».\n5) Цифрой «2» на схеме обозначена Варшава.\n6) В ходе событий погиб генерал армии И.Д. Черняховский.`,
+          info: `Задание проверяет знание событий Великой Отечественной войны и умение работать с картой.`,
+          explanation: `1) Неверно: 3-м Белорусским фронтом командовал И.Д. Черняховский, а не Жуков. 2) Неверно: Панфилов погиб в 1941 г. 3) Верно: Вормдитт занят в ходе операции. 4) Верно: Тегеранская конференция прошла в 1943 г. 5) Верно: цифрой «2» обозначена Варшава — город не подписан словом, его нужно опознать по географии (между Модлином и Радомом, на Висле). 6) Верно: Черняховский погиб 18 февраля 1945 г. Итого: 3456.`,
+          source: `История ЕГЭ-2026, задание 12`
+        },
+        enOptions: ["3456", "346", "124", "456"],
+        ruOptions: ["3456", "346", "124", "456"],
+        correctIndex: 0
+      }
+    ];
+
+    const part2TasksRaw = [
+      {
+        n: 13,
+        en: {
+          title: "Analysis of Historical Source (Time of Troubles)",
+          source: "📄 Source: excerpt from foreigner's notes about Dmitry (see CMM, p. 6).",
+          text: "Indicate time with precision to decade when conversation described in last paragraph took place. Name son of 'old tyrant' omitted in text. Indicate name under which period entered history when mentioned in text Dmitry was Russian ruler.",
+          note: "1) Time of conversation: 1600s (last paragraph — 'after murder of Dmitry', i.e. after May 1606). 2) Son of 'old tyrant' (Ivan the Terrible): Feodor (Feodor I Ioannovich). 3) Period of Dmitry's rule: Time of Troubles."
+        },
+        ru: {
+          title: "Анализ исторического источника (Смутное время)",
+          source: "📄 Источник: отрывок из записок иностранца о Димитрии (см. КИМ, с. 6).",
+          text: "Укажите с точностью до десятилетия время, когда состоялся разговор, приведённый в последнем абзаце текста. Назовите имя сына «старого тирана», пропущенное в тексте. Укажите, под каким названием вошёл в историю период, когда российским государем был упомянутый в тексте Димитрий.",
+          note: "1) Время разговора: 1600-е гг. (последний абзац — «после убийства Димитрия», т.е. после мая 1606 г.). 2) Сын «старого тирана» (Ивана Грозного): Фёдор (Фёдор I Иоаннович). 3) Период правления Димитрия: Смутное время."
+        }
+      },
+      {
+        n: 14,
+        en: {
+          title: "Work with Source (short-answer subtasks)",
+          source: "📄 Source: continuation of same foreigner's notes (see CMM, p. 6).",
+          text: "What proofs that Dmitry was not 'true tsar' did interlocutors of author — pharmacist and guard — provide? Give one proof for each. Why, according to one of author's interlocutors, did Muscovites do badly killing Dmitry?",
+          format: "FIPI REQUIREMENT: avoid citing excessive source text not containing necessary provisions. Answer — three parts: pharmacist's proof / guard's proof / why bad.",
+          note: "1) Pharmacist: true tsarevich Dmitry looked very much like mother Maria Nagaya, but this Dmitry did not (appearance mismatch). 2) Guard: real tsarevich killed 17 years ago and long decayed; guard personally saw him dead in Uglich palace. 3) Did badly: Muscovites themselves accepted Dmitry, put on throne and swore allegiance; breaking oath and killing recognized ruler is sin, his 'against morals' actions should have been corrected otherwise."
+        },
+        ru: {
+          title: "Работа с источником (короткоответные подвопросы)",
+          source: "📄 Источник: продолжение тех же записок иностранца (см. КИМ, с. 6).",
+          text: "Какие доказательства того, что Димитрий не был «истинным царём», привели собеседники автора — аптекарь и сторож? Приведите по одному доказательству для каждого. Почему, по мнению одного из собеседников автора, московиты плохо сделали, убив Димитрия?",
+          format: "ТРЕБОВАНИЕ ФИПИ: избегайте цитирования избыточного текста источника, не содержащего нужных положений. Ответ — три части: доказательство аптекаря / доказательство сторожа / почему плохо.",
+          note: "1) Аптекарь: истинный царевич Дмитрий был очень похож на мать, Марию Фёдоровну Нагую, а этот Димитрий — нет (несовпадение внешности). 2) Сторож: подлинный царевич убит 17 лет назад и давно истлел; сторож лично видел его мёртвым в угличском дворце. 3) Плохо сделали: московиты сами приняли Димитрия, посадили на престол и присягнули ему; нарушать присягу и убивать признанного государя — грех, а его «противные нравам» поступки следовало исправлять иными способами."
+        }
+      },
+      {
+        n: 15,
+        en: {
+          title: "Work with Image (commemorative medal)",
+          media: "🖼️ Image: commemorative medal (see CMM, p. 7).",
+          text: "Indicate highest leader of CPSU in year when given commemorative medal released. Using image, give any one justification of your answer.",
+          note: "Leader: L.I. Brezhnev. Justification: on medal inscriptions '50 years' and 'UNION OF SOVIET SOCIALIST REPUBLICS'; USSR formed in 1922, so medal released in 1972, when General Secretary of CC CPSU was Brezhnev."
+        },
+        ru: {
+          title: "Работа с изображением (памятная медаль)",
+          media: "🖼️ Изображение: памятная медаль (см. КИМ, с. 7).",
+          text: "Укажите высшего руководителя КПСС в год, когда была выпущена данная памятная медаль. Используя изображение, приведите одно любое обоснование Вашего ответа.",
+          note: "Руководитель: Л.И. Брежнев. Обоснование: на медали надписи «50 лет» и «СОЮЗ СОВЕТСКИХ СОЦИАЛИСТИЧЕСКИХ РЕСПУБЛИК»; СССР образован в 1922 г., значит медаль выпущена в 1972 г., когда генсеком ЦК КПСС был Брежнев."
+        }
+      },
+      {
+        n: 16,
+        en: {
+          title: "Sculptural Monuments",
+          media: "🖼️ Image: same medal + 4 sculptural monuments in signatures 1)–4) (see CMM, p. 7).",
+          text: "Which of presented sculptural monuments created in same half-century when event happened whose anniversary given commemorative medal dedicated to? In answer write digit marking this sculptural monument. Indicate sculptor who created given sculptural monument.",
+          note: "Medal event — formation of USSR in 1922, i.e. first half of 20th c. (1901–1950). Among four monuments only one created in this interval — 'Worker and Kolkhoz Woman' (1937), sculptor V.I. Mukhina; others belong to other eras (usually 18th c. and 1960–70s). Write digit under which this monument marked ON YOUR IMAGE: in published open version it is position 3, but necessarily verify visually because order of monuments on image not included in CMM text and cannot be restored from text alone."
+        },
+        ru: {
+          title: "Скульптурные памятники",
+          media: "🖼️ Изображение: та же медаль + 4 скульптурных памятника в подписях 1)–4) (см. КИМ, с. 7).",
+          text: "Какой из представленных скульптурных памятников был создан в той же половине века, когда произошло событие, юбилею которого посвящена данная памятная медаль? В ответе запишите цифру, которой обозначен этот скульптурный памятник. Укажите скульптора, создавшего данный скульптурный памятник.",
+          note: "Событие медали — образование СССР в 1922 г., т.е. первая половина XX в. (1901–1950 гг.). Среди четырёх памятников единственный, созданный в этом промежутке, — «Рабочий и колхозница» (1937 г.), скульптор В. И. Мухина; остальные относятся к другим эпохам (как правило, XVIII в. и 1960–70-е гг.). Цифру запишите ту, под которой этот памятник обозначен НА ВАШЕЙ КАРТИНКЕ: в опубликованном открытом варианте это позиция 3, но обязательно сверьте визуально, потому что порядок памятников на изображении в текст КИМ не входит и по одному тексту его не восстановить."
+        }
+      },
+      {
+        n: 17,
+        en: {
+          title: "Analysis of Two Sources (Battle of Kursk)",
+          source: "📄 Sources: two excerpts from memoirs of contemporaries, A and B (see CMM, p. 8).",
+          text: "Indicate name of battle about events discussed in both presented excerpts. Indicate commander of Steppe Front mentioned in text during this battle. What event, according to one of excerpts, forced Stavka begin withdrawing reserves from Steppe Front piece by piece?",
+          format: "FIPI REQUIREMENT: avoid citing excessive source texts. Answer — three parts: battle name / Steppe Front commander / event forcing reserve withdrawal.",
+          note: "1) Battle — Kursk (Battle of Kursk Bulge, 1943). 2) Commander of Steppe Front — I.S. Konev. 3) Event — penetration (breakthrough) of enemy to depth 35 km on Voronezh Front (excerpt B)."
+        },
+        ru: {
+          title: "Анализ двух источников (Курская битва)",
+          source: "📄 Источники: два отрывка из воспоминаний современников, А и Б (см. КИМ, с. 8).",
+          text: "Укажите название битвы, о событиях которой идёт речь в обоих представленных отрывках. Укажите командующего упомянутым в тексте Степным фронтом в ходе этой битвы. Какое событие, согласно одному из отрывков, вынудило Ставку начать по частям изымать резервы из состава Степного фронта?",
+          format: "ТРЕБОВАНИЕ ФИПИ: избегайте цитирования избыточного текста источников. Ответ — три части: название битвы / командующий Степным фронтом / событие, вынудившее изымать резервы.",
+          note: "1) Битва — Курская (битва на Курской дуге, 1943 г.). 2) Командующий Степным фронтом — И.С. Конев. 3) Событие — вклинение (прорыв) противника на глубину 35 км на Воронежском фронте (отрывок Б)."
+        }
+      },
+      {
+        n: 18,
+        en: {
+          title: "Military Reforms of D.A. Milyutin",
+          text: "In January 1862 D.A. Milyutin submitted to Alexander II supreme report with program of transformations in army. Indicate: a) cause (premise) of military reforms connected with results of Russia's foreign policy in 1850s; b) consequence of military reforms for social composition of army; c) influence of military reforms on results of Russia's foreign policy in 1870s.",
+          format: "FORMATTING (order of points obligatory):\na) ___\nb) ___\nc) ___",
+          note: "a) Defeat of Russia in Crimean War 1853–1856 showed military-technical backwardness of army. b) Introduction of all-estate universal conscription (statute 1874) instead of recruit levies — army became massive, estate restrictions in levy abolished. c) Increase in combat readiness ensured victory in Russo-Turkish War 1877–1878 (liberation of Bulgaria, strengthening positions in Balkans)."
+        },
+        ru: {
+          title: "Военные реформы Д.А. Милютина",
+          text: "В январе 1862 г. Д.А. Милютин представил Александру II всеподданнейший доклад с программой преобразований в армии. Укажите: а) причину (предпосылку) военных реформ, связанную с итогами внешней политики России в 1850-х гг.; б) последствие военных реформ для социального состава армии; в) влияние военных реформ на результаты внешней политики России в 1870-х гг.",
+          format: "ОФОРМЛЕНИЕ (обязателен порядок пунктов):\nа) ___\nб) ___\nв) ___",
+          note: "а) Поражение России в Крымской войне 1853–1856 гг. показало военно-техническую отсталость армии. б) Введение всесословной всеобщей воинской повинности (устав 1874 г.) вместо рекрутских наборов — армия стала массовой, сословные ограничения в наборе отменены. в) Повышение боеспособности обеспечило победу в Русско-турецкой войне 1877–1878 гг. (освобождение Болгарии, усиление позиций на Балканах)."
+        }
+      },
+      {
+        n: 19,
+        en: {
+          title: "Concept 'Chronicle'",
+          text: "Using knowledge of Russian history, reveal meaning of concept 'chronicle'. Provide one historical fact specifying given concept applied to Russian history.",
+          format: "FIPI REQUIREMENT: provided fact MUST NOT be contained in your definition of concept.",
+          note: "Definition: chronicle — historical work in which events recorded by years ('let'), in chronological order. Fact: 'Primary Chronicle' — chronicle of early 12th c., created by monk Nestor of Kiev-Pechersk Monastery (fact does not repeat definition)."
+        },
+        ru: {
+          title: "Понятие «летопись»",
+          text: "Используя знания по истории России, раскройте смысл понятия «летопись». Приведите один исторический факт, конкретизирующий данное понятие применительно к истории России.",
+          format: "ТРЕБОВАНИЕ ФИПИ: приведённый факт НЕ должен содержаться в Вашем определении понятия.",
+          note: "Определение: летопись — историческое произведение, в котором события записаны по годам (по «летам»), в хронологическом порядке. Факт: «Повесть временных лет» — летопись начала XII в., созданная монахом Киево-Печерского монастыря Нестором (факт не повторяет определение)."
+        }
+      },
+      {
+        n: 20,
+        en: {
+          title: "Thesis on Similarity of Foreign Policy",
+          text: "Write any one thesis (generalized evaluative judgment) containing information about similarity of foreign policy of Russian state in first quarter of 18th c. and first quarter of 19th c. by some sign(s). Provide two justifications of this thesis.",
+          format: "FORMATTING: Thesis: ___ / Justifications of thesis: 1) ___ 2) ___. Each justification must contain historical facts; avoid general reasoning.",
+          note: "Thesis: foreign policy of Russia in both quarters of centuries aimed at expanding territory and strengthening international authority. 1) First quarter 18th c.: Northern War 1700–1721, annexation of Baltics and exit to Baltic Sea, proclamation of empire (1721). 2) First quarter 19th c.: Patriotic War 1812 and foreign campaigns, annexation of Finland (1809) and Kingdom of Poland (1815), leading role at Congress of Vienna."
+        },
+        ru: {
+          title: "Тезис о сходстве внешней политики",
+          text: "Запишите один любой тезис (обобщённое оценочное суждение), содержащий информацию о сходстве внешней политики Российского государства в первой четверти XVIII в. и первой четверти XIX в. по какому(-им)-либо признаку(-ам). Приведите два обоснования этого тезиса.",
+          format: "ОФОРМЛЕНИЕ: Тезис: ___ / Обоснования тезиса: 1) ___ 2) ___. Каждое обоснование должно содержать исторические факты; избегайте рассуждений общего характера.",
+          note: "Тезис: внешняя политика России в обеих четвертях веков была направлена на расширение территории и укрепление международного авторитета. 1) Первая четверть XVIII в.: Северная война 1700–1721 гг., присоединение Прибалтики и выход к Балтийскому морю, провозглашение империи (1721). 2) Первая четверть XIX в.: Отечественная война 1812 г. и заграничные походы, присоединение Финляндии (1809) и Царства Польского (1815), ведущая роль на Венском конгрессе."
+        }
+      },
+      {
+        n: 21,
+        en: {
+          title: "Arguments about Crises in NATO and WP",
+          text: "Using historical knowledge, provide arguments confirming viewpoint that in 1960s within NATO and Warsaw Pact Organization (WP) internal crises arose based on political or economic contradictions between countries participating in these organizations: one argument for WP and one for NATO.",
+          format: "FORMATTING: Argument for WP: ___ / Argument for NATO: ___. When presenting arguments necessarily use historical facts.",
+          note: "WP: 'Prague Spring' 1968 and entry of WP troops into Czechoslovakia to suppress reforms of A. Dubcek — political crisis inside bloc (Romania and Albania did not support entry). NATO: exit of France in 1966 from integrated military structure of NATO under president Ch. de Gaulle — political contradiction with American leadership of bloc."
+        },
+        ru: {
+          title: "Аргументы о кризисах в НАТО и ОВД",
+          text: "Используя исторические знания, приведите аргументы в подтверждение точки зрения, что в 1960-х гг. в рамках НАТО и Организации Варшавского договора (ОВД) возникали внутренние кризисы, в основе которых лежали политические или экономические противоречия между странами — участницами данных организаций: один аргумент для ОВД и один для НАТО.",
+          format: "ОФОРМЛЕНИЕ: Аргумент для ОВД: ___ / Аргумент для НАТО: ___. При изложении аргументов обязательно используйте исторические факты.",
+          note: "ОВД: «Пражская весна» 1968 г. и ввод войск ОВД в Чехословакию для подавления реформ А. Дубчека — политический кризис внутри блока (Румыния и Албания ввод не поддержали). НАТО: выход Франции в 1966 г. из интегрированной военной структуры НАТО при президенте Ш. де Голле — политическое противоречие с американским лидерством блока."
+        }
+      }
+    ];
+
+    // Process Quiz Data for current language
+    let quiz = [];
+    let part2Tasks = [];
+
+    function prepareData() {
+      quiz = quizRaw.map(q => ({
+        ...q,
+        text: q[currentLang].text,
+        info: q[currentLang].info,
+        explanation: q[currentLang].explanation,
+        source: q[currentLang].source,
+        options: currentLang === 'ru' ? [...q.ruOptions] : [...q.enOptions],
+        correct: q.correctIndex 
+      }));
+      
+      part2Tasks = part2TasksRaw.map(t => ({
+        n: t.n,
+        title: t[currentLang].title,
+        text: t[currentLang].text,
+        note: t[currentLang].note,
+        source: t[currentLang].source,
+        media: t[currentLang].media,
+        format: t[currentLang].format
+      }));
+    }
+
+    // ============================================================
+    // LOGIC FUNCTIONS
+    // ============================================================
+
+    const QUIZ_ORIGINAL_VALUES = quizRaw.map(function (q) {
+      return {
+        correctValueRu: q.ruOptions[q.correctIndex],
+        correctValueEn: q.enOptions[q.correctIndex]
+      };
+    });
+
+    function seededShuffle(arr, seedNum) {
+      const a = arr.slice();
+      let s = seedNum || 1;
+      const rand = function () {
+        s = (s * 9301 + 49297) % 233280;
+        return s / 233280;
+      };
+      for (let i = a.length - 1; i > 0; i--) {
+        const j = Math.floor(rand() * (i + 1));
+        [a[i], a[j]] = [a[j], a[i]];
+      }
+      return a;
+    }
+
+    function shuffleOptionsOnce() {
+      const seed = quizRaw.map(function () {
+        return Math.floor(Math.random() * 1000000) + 1;
+      });
+
+      quiz.forEach(function (q, i) {
+        const correctVal = currentLang === 'ru' 
+           ? QUIZ_ORIGINAL_VALUES[i].correctValueRu 
+           : QUIZ_ORIGINAL_VALUES[i].correctValueEn;
+
+        const shuffled = seededShuffle(q.options, seed[i]);
+        q.options = shuffled;
+        q.correct = shuffled.indexOf(correctVal);
+      });
+    }
+
+    let savedAnswers = {};
+    let manualNotes = {};
+    let checklistState = {};
+    let currentFilter = "all";
+
+    function applyUIText() {
+      const L = I18N[currentLang];
+      document.title = L.docTitle;
+      document.documentElement.lang = currentLang;
+
+      const meta = document.querySelector('meta[name="description"]');
+      if (meta) meta.setAttribute("content", L.metaDesc);
+
+      document.querySelectorAll("[data-i18n]").forEach(function (el) {
+        const key = el.dataset.i18n;
+        if (L[key] != null) el.innerHTML = L[key];
+      });
+      
+      updateDynamicLabels();
+    }
+
+    function updateDynamicLabels() {}
+
+    function renderCard(card, index, containerId) {
+      const container = document.getElementById(containerId);
+      const div = document.createElement('div');
+      div.className = 'card ' + (card.cls || '');
+      
+      let inner = `<span class="tag ${card.tagCls || ''}">${loc(card.tagKey)}</span>`;
+      inner += `<h3>${loc(card.titleKey)}</h3>`;
+      
+      if (card.listKey) {
+        const list = I18N[currentLang][card.listKey];
+        inner += `<ul class="mini-list">${list.map(item => `<li>${escapeHtml(item)}</li>`).join('')}</ul>`;
+      } else if (card.textKey) {
+        inner += `<p>${escapeHtml(I18N[currentLang][card.textKey])}</p>`;
+      }
+      
+      div.innerHTML = inner;
+      container.appendChild(div);
+    }
+
+    function renderStaticSections() {
+      document.getElementById("structureGrid").innerHTML = '';
+      document.getElementById("changesGrid").innerHTML = '';
+      document.getElementById("criteriaGrid").innerHTML = '';
+      
+      structureCardsData.forEach(c => renderCard(c, 0, "structureGrid"));
+      changesCardsData.forEach(c => renderCard(c, 0, "changesGrid"));
+      criteriaCardsData.forEach(c => renderCard(c, 0, "criteriaGrid"));
+    }
+
+    function renderChecklist() {
+      const ul = document.getElementById("checklistUl");
+      ul.innerHTML = checklistItemsData.map(function (item) {
+        const checked = checklistState[item.key] ? "checked" : "";
+        const doneClass = checklistState[item.key] ? "done" : "";
+        const labelText = currentLang === "ru" ? item.labelRu : item.labelEn;
+        return `
+          <li class="check-item ${doneClass}">
+            <input type="checkbox" id="${item.key}" data-key="${item.key}" ${checked} />
+            <label for="${item.key}">${escapeHtml(labelText)}</label>
+          </li>
+        `;
+      }).join("");
+    }
+
+    function renderPlan() {
+      const L = I18N[currentLang];
+      document.getElementById("planGrid").innerHTML = planDaysData.map(function (d) {
+        const text = currentLang === "ru" ? d.ru : d.en;
+        return `
+          <div class="day ${d.critical ? "critical" : ""}">
+            <b>${escapeHtml(L.dayPrefix)} ${d.day}</b>
+            ${escapeHtml(text)}
+          </div>
+        `;
+      }).join("");
+    }
+
+    function topicLabel(topic) {
+      if (topic === "ancient") return loc("topicAncient");
+      if (topic === "empire") return loc("topicEmpire");
+      return loc("topicSoviet");
+    }
+
+    function topicClass(topic) {
+      if (topic === "ancient") return "q-number ancient";
+      if (topic === "empire") return "q-number empire";
+      return "q-number soviet";
+    }
+
+    function setFilter(filter, btn) {
+      currentFilter = filter;
+      document.querySelectorAll(".filter-btn").forEach(function (b) {
+        b.classList.remove("active");
+      });
+      if (btn) btn.classList.add("active");
+      applyFilter();
+    }
+
+    function applyFilter() {
+      quiz.forEach(function (q) {
+        const block = document.getElementById("q" + q.id);
+        if (!block) return;
+        let show = true;
+        if (currentFilter !== "all") show = q.topic === currentFilter;
+        block.style.display = show ? "" : "none";
+      });
+    }
+
+    function updateFilterLabels() {
+      const ancientCount = quiz.filter(function (q) { return q.topic === "ancient"; }).length;
+      const empireCount = quiz.filter(function (q) { return q.topic === "empire"; }).length;
+      const sovietCount = quiz.filter(function (q) { return q.topic === "soviet"; }).length;
+
+      document.getElementById("filterAll").textContent = `${loc("filterAll")} (${quiz.length})`;
+      document.getElementById("filterAncient").textContent = `${loc("filterAncient")} (${ancientCount})`;
+      document.getElementById("filterEmpire").textContent = `${loc("filterEmpire")} (${empireCount})`;
+      document.getElementById("filterSoviet").textContent = `${loc("filterSoviet")} (${sovietCount})`;
+    }
+
+    function renderAllQuestions() {
+      const container = document.getElementById("quizContainer");
+      container.innerHTML = "";
+
+      quiz.forEach(function (q) {
+        const block = document.createElement("div");
+        block.className = "question-block";
+        block.id = "q" + q.id;
+
+        let optionsHtml = "";
+        q.options.forEach(function (opt, idx) {
+          optionsHtml += `<button class="option" data-q="${q.id}" data-idx="${idx}" data-value="${escapeHtml(opt)}" onclick="handleAnswer(${q.id}, ${idx})">${escapeHtml(opt)}</button>`;
+        });
+
+        block.innerHTML = `
+          <div class="${topicClass(q.topic)}">${escapeHtml(topicLabel(q.topic))}, ${loc("p2Task")} ${q.task}</div>
+
+          <div class="q-part">
+            <span class="q-part-label">${escapeHtml(loc("qLabel1"))}</span>
+            <div class="q-text">${escapeHtml(q.text)}</div>
+            ${q.needsImage ? '<div class="q-image-note">🖼️ [scheme / label — see CMM]</div>' : ''}
+          </div>
+
+          <div class="q-info">
+            <span class="q-part-label" style="color:#d8ccff;">${escapeHtml(loc("qLabel2"))}</span>
+            <p style="margin:0;">${escapeHtml(q.info)}</p>
+          </div>
+
+          <div class="q-part">
+            <span class="q-trainer-label">${escapeHtml(loc("qLabel3"))}</span>
+            <div class="options" id="options-${q.id}">${optionsHtml}</div>
+          </div>
+
+          <div id="result-${q.id}"></div>
+        `;
+
+        container.appendChild(block);
+      });
+
+      quiz.forEach(function (q) {
+        if (savedAnswers[q.id] !== undefined) {
+          applyAnswerVisual(q, savedAnswers[q.id]);
+          showResult(q, savedAnswers[q.id]);
+        }
+      });
+
+      updateFilterLabels();
+      updateStats();
+      updateSummary();
+      applyFilter();
+    }
+
+    function renderPart2() {
+      const container = document.getElementById("part2Container");
+      container.innerHTML = "";
+
+      part2Tasks.forEach(function (t) {
+        const card = document.createElement("article");
+        card.className = "manual-card";
+
+        const savedNote = manualNotes[t.n] || "";
+
+        const sourceBlock = t.source
+          ? `<div class="q-source-note">${escapeHtml(t.source)}</div>` : "";
+        const mediaBlock = t.media
+          ? `<div class="q-image-note">${escapeHtml(t.media)}</div>` : "";
+        const formatBlock = t.format
+          ? `<div class="q-format-note"><strong>${escapeHtml(loc("p2FormatReq")) || 'Formatting Requirements:'}</strong>\n${escapeHtml(t.format)}</div>` : "";
+
+        card.innerHTML = `
+          <span class="tag red">${escapeHtml(loc("p2Tag"))}</span>
+          <h3>${escapeHtml(loc("p2Task"))} ${t.n}. ${escapeHtml(t.title)}</h3>
+          ${sourceBlock}${mediaBlock}
+          <p>${escapeHtml(t.text)}</p>
+          ${formatBlock}
+          <button class="btn small secondary" onclick="toggleHint(${t.n}, this)">${escapeHtml(loc("p2ShowRef"))}</button>
+          <div class="answer-hint" id="hint-${t.n}" style="display:none;">
+            <strong>${escapeHtml(loc("p2Hint"))}</strong> ${escapeHtml(t.note)}
+          </div>
+          <div class="check-input">
+            <label>${escapeHtml(loc("p2InputLbl"))}</label>
+            <input
+              type="text"
+              data-task="${t.n}"
+              value="${escapeHtml(savedNote)}"
+              placeholder="${escapeHtml(loc("p2Placeholder"))}"
+              oninput="saveManualNote(${t.n}, this.value)"
+            />
+          </div>
+        `;
+
+        container.appendChild(card);
+      });
+    }
+
+    function toggleHint(n, btn) {
+      const el = document.getElementById("hint-" + n);
+      if (!el) return;
+      const open = el.style.display !== "none";
+      el.style.display = open ? "none" : "";
+      if (btn) btn.textContent = open ? loc("p2ShowRef") : loc("p2HideRef");
+    }
+
+    function saveManualNote(taskNum, value) {
+      manualNotes[taskNum] = value;
+    }
+
+    function handleAnswer(qId, selectedIdx) {
+      const q = quiz.find(function (item) { return item.id === qId; });
+      if (!q || savedAnswers[qId] !== undefined) return;
+
+      const selectedValue = q.options[selectedIdx];
+      savedAnswers[qId] = selectedValue;
+
+      applyAnswerVisual(q, selectedValue);
+      showResult(q, selectedValue);
+      updateStats();
+      updateSummary();
+    }
+
+    function applyAnswerVisual(q, selectedValue) {
+      const optionsBox = document.getElementById("options-" + q.id);
+      if (!optionsBox) return;
+
+      const correctValue = q.options[q.correct];
+      const buttons = optionsBox.querySelectorAll(".option");
+
+      buttons.forEach(function (btn) {
+        btn.disabled = true;
+        const value = btn.dataset.value;
+
+        if (value === correctValue) {
+          btn.classList.add("correct");
+        }
+
+        if (value === selectedValue && selectedValue !== correctValue) {
+          btn.classList.add("wrong");
+        }
+      });
+    }
+
+    function showResult(q, selectedValue) {
+      const resultBox = document.getElementById("result-" + q.id);
+      if (!resultBox) return;
+
+      const correctValue = q.options[q.correct];
+      const isCorrect = selectedValue === correctValue;
+
+      const resultClass = isCorrect ? "correct" : "wrong";
+      const verdictClass = isCorrect ? "correct" : "wrong";
+      const verdictText = isCorrect ? loc("resCorrect") : loc("resWrong");
+
+      resultBox.innerHTML = `
+        <div class="result-block ${resultClass}" role="status" aria-live="polite">
+          <div class="verdict ${verdictClass}">${escapeHtml(verdictText)}</div>
+          <div class="result-row"><strong>${escapeHtml(loc("resAns"))}</strong> ${escapeHtml(correctValue)}</div>
+          <div class="result-row"><strong>${escapeHtml(loc("resExp"))}</strong> ${escapeHtml(q.explanation)}</div>
+          <div class="source-row"><strong>${escapeHtml(loc("resSrc"))}</strong> ${escapeHtml(q.source)}</div>
+        </div>
+      `;
+    }
+
+    function getChecklistProgress() {
+      const total = checklistItemsData.length;
+      let done = 0;
+      checklistItemsData.forEach(function (item) {
+        if (checklistState[item.key]) done++;
+      });
+      return total ? Math.round((done / total) * 100) : 0;
+    }
+
+    function updateStats() {
+      const total = quiz.length;
+      let answered = 0;
+      let correct = 0;
+
+      quiz.forEach(function (q) {
+        const saved = savedAnswers[q.id];
+        if (typeof saved === "string" && q.options.includes(saved)) {
+          answered++;
+          if (saved === q.options[q.correct]) {
+            correct++;
+          }
+        }
+      });
+
+      document.getElementById("answeredCount").textContent = answered + "/" + total;
+      document.getElementById("correctCount").textContent = correct;
+      document.getElementById("checklistProgress").textContent = getChecklistProgress() + "%";
+      document.getElementById("overall").value = Math.round(((answered / total) * 100 + getChecklistProgress()) / 2);
+    }
+
+    function updateSummary() {
+      const summaryBox = document.getElementById("summaryBox");
+      const total = quiz.length;
+      let answered = 0;
+      let correct = 0;
+
+      quiz.forEach(function (q) {
+        const saved = savedAnswers[q.id];
+        if (typeof saved === "string" && q.options.includes(saved)) {
+          answered++;
+          if (saved === q.options[q.correct]) {
+            correct++;
+          }
+        }
+      });
+
+      if (answered < total) {
+        summaryBox.innerHTML = `
+          <div class="summary">
+            <p style="color:#9aa4c8;margin:0;">${escapeHtml(loc("sumDone"))} <strong>${answered}</strong> ${escapeHtml(loc("sumOf"))} ${total}</p>
+            <p style="color:#9aa4c8;margin:8px 0 0 0;">${escapeHtml(loc("sumCorr"))} <strong>${correct}</strong></p>
+            <p style="color:#9aa4c8;margin:8px 0 0 0;font-size:14px;">${escapeHtml(loc("sumFin"))}</p>
+          </div>
+        `;
+        return;
+      }
+
+      const percent = Math.round((correct / total) * 100);
+      let verdict = "";
+
+      if (percent >= 85) {
+        verdict = loc("verExc");
+      } else if (percent >= 60) {
+        verdict = loc("verGood");
+      } else {
+        verdict = loc("verNeed");
+      }
+
+      summaryBox.innerHTML = `
+        <div class="summary">
+          <div class="score">${correct}/${total}</div>
+          <p style="margin:8px 0;">${escapeHtml(verdict)}</p>
+          <p style="color:#9aa4c8;margin:0;">${escapeHtml(loc("sumCorr"))} ${percent}%</p>
+        </div>
+      `;
+    }
+
+    function resetAll() {
+      if (!confirm(loc("confReset"))) return;
+
+      savedAnswers = {};
+      manualNotes = {};
+      checklistState = {};
+
+      shuffleOptionsOnce();
+      renderAllSections();
+    }
+
+    function renderAllSections() {
+      prepareData();
+      renderStaticSections();
+      renderChecklist();
+      renderPlan();
+      renderAllQuestions();
+      renderPart2();
+    }
+
+    function initChecklist() {
+      const inputs = document.querySelectorAll("#checklistUl input");
+
+      inputs.forEach(function (input) {
+        input.checked = false;
+        updateCheckItem(input);
+
+        input.addEventListener("change", function () {
+          updateCheckItem(input);
+          updateStats();
+        });
+      });
+
+      updateStats();
+    }
+
+    function updateCheckItem(input) {
+      const item = input.closest(".check-item");
+      if (item) item.classList.toggle("done", input.checked);
+    }
+
+    function copyPhone() {
+      const phone = "89202275676";
+      const status = document.getElementById("copyStatus");
+
+      const showCopied = function () {
+        status.textContent = loc("copied");
+        setTimeout(function () {
+          status.textContent = "";
+        }, 2500);
+      };
+
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(phone)
+          .then(showCopied)
+          .catch(function () {
+            fallbackCopy(phone, showCopied);
+          });
+      } else {
+        fallbackCopy(phone, showCopied);
+      }
+    }
+
+    function fallbackCopy(text, callback) {
+      const textarea = document.createElement("textarea");
+      textarea.value = text;
+      textarea.style.position = "fixed";
+      textarea.style.opacity = "0";
+
+      document.body.appendChild(textarea);
+      textarea.focus();
+      textarea.select();
+
+      try {
+        document.execCommand("copy");
+        callback();
+      } catch (e) {
+        alert(loc("errCopy") + text);
+      }
+
+      document.body.removeChild(textarea);
+    }
+
+    // ============================================================
+    // TIMER LOGIC
+    // ============================================================
+    let timerTotal = 210 * 60; // Default History 210 mins
+    let timerRemaining = timerTotal;
+    let timerInterval = null;
+    let timerRunning = false;
+
+    function formatTime(sec) {
+      const h = Math.floor(sec / 3600);
+      const m = Math.floor((sec % 3600) / 60);
+      const s = sec % 60;
+      return [h, m, s].map(function (v) { return String(v).padStart(2, "0"); }).join(":");
+    }
+
+    function updateTimerDisplay() {
+      const display = document.getElementById("timerDisplay");
+      const widget = document.getElementById("timerWidget");
+      display.textContent = formatTime(timerRemaining);
+      widget.classList.toggle("warning", timerRemaining <= 300 && timerRemaining > 60);
+      widget.classList.toggle("danger", timerRemaining <= 60);
+    }
+
+    function updateTimerButton() {
+      const btn = document.getElementById("timerToggle");
+      btn.textContent = timerRunning ? "⏸" : "▶";
+      btn.setAttribute("title", timerRunning ? loc("timerPause") : loc("timerStart"));
+      btn.setAttribute("aria-label", timerRunning ? loc("timerPause") : loc("timerStart"));
+    }
+
+    function stopTimer() {
+      timerRunning = false;
+      if (timerInterval) clearInterval(timerInterval);
+      timerInterval = null;
+      updateTimerButton();
+    }
+
+    function startTimer() {
+      if (timerRunning || timerRemaining <= 0) return;
+      timerRunning = true;
+      timerInterval = setInterval(function () {
+        if (timerRemaining > 0) {
+          timerRemaining--;
+          updateTimerDisplay();
+        }
+        if (timerRemaining === 0) {
+          stopTimer();
+          alert(loc("timerUp"));
+        }
+      }, 1000);
+      updateTimerButton();
+    }
+
+    function toggleTimer() {
+      if (timerRunning) stopTimer();
+      else startTimer();
+    }
+
+    function resetTimer() {
+      stopTimer();
+      timerRemaining = timerTotal;
+      updateTimerDisplay();
+    }
+
+    function updateTimerLabels() {
+      const preset = document.getElementById("timerPreset");
+      const presets = [
+        { seconds: 210 * 60, key: "timerHist" },
+        { seconds: 60 * 60, key: "timerPractice" }
+      ];
+
+      preset.innerHTML = presets.map(function (p) {
+        return `<option value="${p.seconds}">${escapeHtml(loc(p.key))}</option>`;
+      }).join("");
+
+      const currentValue = parseInt(preset.value, 10);
+      if (!presets.some(p => p.seconds === currentValue)) {
+         preset.value = String(210 * 60);
+         timerTotal = 210 * 60;
+      } else {
+         timerTotal = currentValue;
+      }
+      
+      document.getElementById("timerReset").setAttribute("title", loc("timerReset"));
+      document.getElementById("timerReset").setAttribute("aria-label", loc("timerReset"));
+      updateTimerButton();
+      updateTimerDisplay();
+    }
+
+    function setLang(lang) {
+      currentLang = lang;
+      document.querySelectorAll(".lang-option").forEach(function (sp) {
+        sp.classList.toggle("active", sp.dataset.lang === lang);
+      });
+      applyUIText();
+      renderAllSections();
+      updateTimerLabels();
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+      localStorage.removeItem(STORAGE.answers);
+      localStorage.removeItem(STORAGE.checklist);
+      localStorage.removeItem(STORAGE.shuffle);
+      localStorage.removeItem(STORAGE.manual);
+
+      savedAnswers = {};
+      manualNotes = {};
+      checklistState = {};
+
+      shuffleOptionsOnce();
+      applyUIText();
+      renderAllSections();
+      updateTimerLabels();
+      updateTimerDisplay();
+
+      document.getElementById("langToggle").addEventListener("click", function () {
+        setLang(currentLang === "en" ? "ru" : "en");
+      });
+
+      document.getElementById("timerToggle").addEventListener("click", toggleTimer);
+      document.getElementById("timerReset").addEventListener("click", resetTimer);
+
+      document.getElementById("timerPreset").addEventListener("change", function (e) {
+        timerTotal = parseInt(e.target.value, 10);
+        resetTimer();
+      });
+
+      document.getElementById("checklistUl").addEventListener("change", function (e) {
+        if (e.target.matches("input[type='checkbox']")) {
+          const key = e.target.dataset.key;
+          checklistState[key] = e.target.checked;
+          const li = e.target.closest(".check-item");
+          if (li) li.classList.toggle("done", e.target.checked);
+          updateStats();
+        }
+      });
+
+      document.getElementById("part2Container").addEventListener("input", function (e) {
+        if (e.target.matches("input[data-task]")) {
+          manualNotes[e.target.dataset.task] = e.target.value;
+        }
+      });
+    });
+  </script>
+</body>
+</html>
